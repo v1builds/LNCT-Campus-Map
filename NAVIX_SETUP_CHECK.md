@@ -1,0 +1,1 @@
+NAVIX GitHub write-access check. This file was created by the connected GitHub integration to verify repository write permissions. It can be removed after verification.
