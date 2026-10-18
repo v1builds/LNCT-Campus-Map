@@ -43,6 +43,43 @@ main{max-width:1400px;margin:auto;padding:26px clamp(12px,3vw,36px)}.hero{displa
 @keyframes infoIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:560px){.mapstage svg{min-height:0;width:100%;height:auto;overflow:visible}.mapstage{overflow:hidden}.building-label{font-size:12px}.building-icon{font-size:23px}#placeInfo{left:8px;right:58px;top:8px;padding:10px 11px}.mapnote{max-width:calc(100% - 74px)}}
 @media(prefers-reduced-motion:reduce){.tree-crown,.route-line,.building,#placeInfo{animation:none!important;transition:none!important}}
+
+/* NAVIX DREAMSCAPE: brighter, playful 3D adventure-game direction */
+:root{--navy:#17264b;--blue:#536dff;--ink:#233354;--muted:#7180a0;--line:#e5e8fa;--bg:#f4f5ff;--green:#20b77c}
+body{background:radial-gradient(ellipse at 8% 0%,#fff3d8 0,transparent 32%),linear-gradient(155deg,#f6f2ff 0%,#eef8ff 52%,#effcf2 100%);color:#243354}
+header{background:linear-gradient(110deg,#18294d,#263e73 55%,#384a87);box-shadow:0 5px 24px #25396a25}
+.brand span{background:linear-gradient(145deg,#ffbf55,#ff8d65);box-shadow:0 4px 12px #ffad6340}
+.eyebrow{color:#6b62ee}
+.card{border-color:#e5e8f7;box-shadow:0 12px 34px #52649a12}
+.maphead{background:linear-gradient(110deg,#fff,#fff9f0)}
+.mapstage{background:linear-gradient(150deg,#aee8ff 0%,#d5f4ff 24%,#b9edc5 24.2%,#dcf8d5 68%,#a8e5b7 100%);border-top:1px solid #fff}
+.mapstage:before{background:radial-gradient(ellipse at 15% 8%,#ffffffd9 0,transparent 18%),radial-gradient(ellipse at 82% 15%,#ffffff9c 0,transparent 17%),radial-gradient(ellipse at 85% 82%,#9de5b777 0,transparent 35%)}
+.mapstage svg{filter:drop-shadow(0 10px 12px #315e4a20) saturate(1.18)}
+.building{filter:drop-shadow(0 7px 0 #4b7b5c22);transition:filter .22s ease,transform .22s ease}
+.building:hover,.building.selected{filter:drop-shadow(0 9px 4px #425bff50) saturate(1.18);transform:translateY(-5px) scale(1.025)}
+.building-label{fill:#293d5d;stroke:#fff;stroke-width:4px;font-size:12px;font-weight:900}
+.route-line{stroke:#ff7a45;stroke-width:8;stroke-dasharray:4 13;filter:drop-shadow(0 3px 2px #ff754c70);animation:walk .75s linear infinite}
+.maptools button{color:#4355bc;border-color:#dfe3ff;box-shadow:0 5px 14px #3545781f}
+.tag{background:#e9e7ff;color:#6250e8}
+.mode.active{background:linear-gradient(135deg,#fff,#f2f0ff);color:#4c48c7;box-shadow:0 3px 10px #514c9a18}
+.mode{color:#6a7596}
+.primary{background:linear-gradient(105deg,#5968ff,#8a5cff);box-shadow:0 5px 14px #6b62f02c}
+.secondary,.swap{background:#f0efff;color:#5554bc}
+.gamepanel{background:radial-gradient(circle at 90% 0%,#536ad4 0,transparent 35%),linear-gradient(145deg,#253b70,#503e92 70%,#744a9b);border-color:#574d9c}
+.gamepanel .stat{background:#ffffff13;border-color:#ffffff2b}
+.tree{filter:drop-shadow(0 5px 5px #0e193c40);animation:treePop 2.4s ease-in-out infinite alternate}
+@keyframes treePop{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(-4px) rotate(2deg)}}
+.mapnote{background:#ffffffed;border-color:#fff;box-shadow:0 5px 20px #315c4a1a}
+#placeInfo{border-color:#dce0ff;box-shadow:0 10px 25px #384a8626}
+.profilebar{border-color:#e4e6fb;box-shadow:0 7px 20px #52649a0b}
+.lostbadge{background:#fff0d9;color:#a85c1c}
+@keyframes cloudDrift{from{transform:translateX(-7px)}to{transform:translateX(10px)}}
+.sky-cloud{animation:cloudDrift 6s ease-in-out infinite alternate;transform-box:fill-box}
+.sky-cloud:nth-of-type(2n){animation-delay:-2.4s}
+.game-mode .route-line{stroke:#ffcf4d;filter:drop-shadow(0 0 7px #ffbc4eaa)}
+@media(max-width:560px){.mapstage svg{filter:drop-shadow(0 5px 8px #315e4a18) saturate(1.18)}.building-label{font-size:12px}.maphead{background:linear-gradient(110deg,#fff,#fff8ee)}}
+@media(prefers-reduced-motion:reduce){.tree,.sky-cloud{animation:none!important}}
+
 </style></head>
 <body>
 <header><div class="brand"><span>⌖</span>NAVIX</div><div class="status">● Campus explorer　·　LNCT Bhopal</div></header>
@@ -56,7 +93,28 @@ main{max-width:1400px;margin:auto;padding:26px clamp(12px,3vw,36px)}.hero{displa
  <filter id="softShadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#4c7860" flood-opacity=".18"/></filter>
  <pattern id="grassDots" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="5" cy="7" r="1.3" fill="#b9dcb8" opacity=".55"/><circle cx="22" cy="20" r="1" fill="#b9dcb8" opacity=".55"/></pattern>
 </defs>
-<rect width="820" height="650" rx="22" fill="url(#grass)"/><rect width="820" height="650" fill="url(#grassDots)"/>
+<rect width="820" height="650" rx="22" fill="url(#grass)"/>
+<!-- playful floating cloud puffs and tiny flowers: decorative scenery -->
+<g class="sky-cloud" opacity=".92">
+ <ellipse cx="93" cy="64" rx="34" ry="13" fill="#fff"/><circle cx="76" cy="55" r="16" fill="#fff"/><circle cx="96" cy="48" r="21" fill="#fff"/><circle cx="116" cy="57" r="15" fill="#fff"/><ellipse cx="97" cy="64" rx="33" ry="8" fill="#fff"/>
+</g>
+<g class="sky-cloud" opacity=".82">
+ <ellipse cx="704" cy="83" rx="30" ry="11" fill="#fff"/><circle cx="688" cy="75" r="14" fill="#fff"/><circle cx="707" cy="68" r="18" fill="#fff"/><circle cx="726" cy="76" r="13" fill="#fff"/>
+</g>
+<g class="sky-cloud" opacity=".68">
+ <ellipse cx="475" cy="47" rx="22" ry="8" fill="#fff"/><circle cx="463" cy="41" r="10" fill="#fff"/><circle cx="477" cy="36" r="13" fill="#fff"/><circle cx="491" cy="43" r="9" fill="#fff"/>
+</g>
+<g fill="#fff8cf" opacity=".95">
+ <path d="M240 76 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3Z"/><path d="M758 160 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2Z"/><path d="M474 112 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2Z"/>
+</g>
+<g opacity=".96">
+ <g transform="translate(54 450)"><circle r="5" fill="#ff83b5"/><circle cx="0" cy="-5" r="3" fill="#fff3fa"/><circle cx="5" cy="0" r="3" fill="#fff3fa"/><circle cy="5" r="3" fill="#fff3fa"/><circle cx="-5" r="3" fill="#fff3fa"/><circle r="2" fill="#ffc94d"/></g>
+ <g transform="translate(252 395)"><circle r="5" fill="#ff83b5"/><circle cy="-5" r="3" fill="#fff3fa"/><circle cx="5" r="3" fill="#fff3fa"/><circle cy="5" r="3" fill="#fff3fa"/><circle cx="-5" r="3" fill="#fff3fa"/><circle r="2" fill="#ffc94d"/></g>
+ <g transform="translate(581 430)"><circle r="5" fill="#ff83b5"/><circle cy="-5" r="3" fill="#fff3fa"/><circle cx="5" r="3" fill="#fff3fa"/><circle cy="5" r="3" fill="#fff3fa"/><circle cx="-5" r="3" fill="#fff3fa"/><circle r="2" fill="#ffc94d"/></g>
+ <g transform="translate(770 548)"><circle r="5" fill="#ff83b5"/><circle cy="-5" r="3" fill="#fff3fa"/><circle cx="5" r="3" fill="#fff3fa"/><circle cy="5" r="3" fill="#fff3fa"/><circle cx="-5" r="3" fill="#fff3fa"/><circle r="2" fill="#ffc94d"/></g>
+ <g transform="translate(250 605)"><circle r="5" fill="#ff83b5"/><circle cy="-5" r="3" fill="#fff3fa"/><circle cx="5" r="3" fill="#fff3fa"/><circle cy="5" r="3" fill="#fff3fa"/><circle cx="-5" r="3" fill="#fff3fa"/><circle r="2" fill="#ffc94d"/></g>
+</g>
+<rect width="820" height="650" fill="url(#grassDots)"/>
 <!-- landscaped lawns -->
 <path d="M20 230 Q70 205 130 236 T250 230 L250 450 Q190 480 120 450 T20 455Z" fill="#c5e8c4" opacity=".8"/>
 <path d="M475 220 Q560 190 640 225 T795 210 L795 365 Q720 395 650 365 T475 375Z" fill="#c5e8c4" opacity=".75"/>
