@@ -218,11 +218,57 @@ body.guest-mode .footer{color:#929bb3}
 @media(max-width:850px){body.guest-mode .hero{min-height:136px}body.guest-mode .hero:after{right:22px;opacity:.1}body.guest-mode .layout{gap:14px}}
 @media(max-width:560px){body.guest-mode main{padding:14px 10px 24px}body.guest-mode .hero{padding:20px 17px;min-height:138px;border-radius:21px;margin-bottom:13px}body.guest-mode .hero h1{font-size:30px;max-width:15ch}body.guest-mode .hero .sub{max-width:29ch;font-size:13px}body.guest-mode .hero:after{right:8px;top:19px;transform:none;font-size:60px;opacity:.1}body.guest-mode .maphead{padding:13px 14px}body.guest-mode .maphead strong{font-size:14px}body.guest-mode .side>.card:first-child .panel{padding:16px}body.guest-mode .login-btn{padding:8px 12px;font-size:12px}}
 
+
+/* Notebook-approved guest search flow and fixed four-item bottom bar */
+.guest-search{display:flex;align-items:center;gap:12px;margin:0 0 14px}
+.guest-search button{font:inherit}
+.search-open-btn{display:flex;align-items:center;gap:10px;flex:1;text-align:left;background:#fff;border:1px solid #e3e6fc;border-radius:17px;padding:14px 16px;color:#7180a5;box-shadow:0 7px 20px #52649a0b}
+.search-open-btn .search-glyph{font-size:20px;color:#6254e8}
+.search-open-btn strong{display:block;color:#35436a;font-size:14px}
+.search-open-btn small{display:block;font-size:11px;margin-top:2px}
+.search-hint{background:#fff;border:1px solid #e3e6fc;border-radius:15px;padding:12px;color:#5968c9;font-weight:800}
+.search-workspace{display:none;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin:0 0 16px}
+.search-workspace.open{display:grid}
+.search-workspace .search-block{background:#fff;border:1px solid #e3e6fc;border-radius:18px;padding:15px;box-shadow:0 10px 28px #3c4d8510;min-width:0}
+.search-block h2{font-size:15px;margin:0 0 10px;color:#293861}
+.search-block .field{margin:9px 0}
+.search-block select{width:100%;padding:11px;border:1px solid #dfe6ee;border-radius:10px;background:#fbfcfe;color:#233354;min-height:44px}
+.search-block .primary{margin-top:7px}
+.search-block .quick-actions{display:flex;gap:8px;flex-wrap:wrap}
+.search-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:11px}
+.search-metrics div{background:#f2f1ff;border-radius:10px;padding:9px;text-align:center;min-width:0}
+.search-metrics small{display:block;color:#737da0;font-size:10px}
+.search-metrics strong{display:block;color:#514ec0;font-size:15px;overflow-wrap:anywhere}
+.navix-bottom{position:fixed;z-index:15;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;padding:8px 5px calc(8px + env(safe-area-inset-bottom));background:#ffffffed;backdrop-filter:blur(18px);border-top:1px solid #e4e6fa;box-shadow:0 -7px 24px #344a7810}
+.navix-bottom button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:transparent;color:#727d9e;border-radius:12px;padding:5px 2px;font-size:10px;font-weight:800;min-width:0}
+.navix-bottom button span:first-child{font-size:21px;line-height:1.2}
+.navix-bottom button.active{background:#f0eeff;color:#5c51d2}
+main{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
+body.guest-mode .guest-search{display:flex}
+body.guest-mode .search-workspace{display:none}
+body.guest-mode.search-open .search-workspace{display:grid}
+body.guest-mode:not(.search-open) .layout>.side>.card:first-child{display:none}
+body.guest-mode:not(.search-open) .layout>.side>.card:nth-child(2){display:none}
+body.guest-mode:not(.search-open) .layout>.side>.card:nth-child(3){display:none}
+body.guest-mode:not(.search-open) .layout>.side>.card:nth-child(4){display:none}
+body.guest-mode:not(.search-open) .layout{grid-template-columns:minmax(0,1fr)}
+body.guest-mode:not(.search-open) .layout>article{order:0}
+body.guest-mode .profilebar{display:none}
+body.personal-mode .guest-search{display:none}
+body.personal-mode .search-workspace{display:none}
+@media(max-width:650px){.search-workspace{grid-template-columns:1fr}.search-hint{display:none}.search-block{padding:13px}.navix-bottom button{font-size:9px}.navix-bottom button span:first-child{font-size:20px}main{padding-bottom:calc(92px + env(safe-area-inset-bottom))}}
+
 </style></head>
 <body>
 <header><div class="brand"><span>⌖</span>NAVIX</div><div class="header-right"><div class="status">● Campus explorer　·　LNCT Bhopal</div><button class="login-btn" id="loginBtn"><span id="headerAvatar">✦</span><span id="loginLabel">Log in</span></button></div></header>
 <main>
 <section class="hero"><div><div class="eyebrow">Your campus, easier to explore</div><h1>Find your way around LNCT.</h1><p class="sub">Choose a place, follow your route, and make every campus walk count.</p></div><div class="modes"><button class="mode active" id="normalMode">◈ Map mode</button><button class="mode" id="gameMode">✦ Game mode</button></div></section>
+
+<div class="guest-search" id="guestSearchBar"><button class="search-open-btn" id="openSearch" type="button"><span class="search-glyph">⌕</span><span><strong>Search your campus</strong><small>Find a building or plan a walking route</small></span></button><button class="search-hint" id="openSearchAlt" type="button" aria-label="Open route search">GO ↗</button></div>
+<section class="search-workspace" id="searchWorkspace" aria-label="Campus search and route planner">
+ <div class="search-block"><h2>✦ Search · Plan your route</h2><div class="field"><label for="start">STARTING POINT</label><select id="start"></select></div><div class="swaprow"><button class="swap" id="swap">↕ Swap start and destination</button></div><div class="field"><label for="end">DESTINATION</label><select id="end"></select></div><button class="primary" id="findRoute">GO</button><div class="search-metrics"><div><small>Time</small><strong id="searchDuration">—</strong></div><div><small>Steps</small><strong id="searchSteps">—</strong></div><div><small>Distance</small><strong id="searchDistance">—</strong></div></div><p class="routecopy" id="searchRouteCopy">Choose your start and destination.</p></div>
+ <div class="search-block"><h2>⌖ Starting point & destination</h2><p class="hint">Choose where your campus walk begins.</p><div class="quick-actions"><button class="secondary" id="detectLocation" type="button">◎ Detect your location</button><button class="secondary" id="manualLocation" type="button">Select manually ↓</button></div><div class="field"><label for="manualStart">SELECT STARTING POINT</label><select id="manualStart"></select></div><div class="field"><label for="manualEnd">SELECT DESTINATION</label><select id="manualEnd"></select></div><button class="primary" id="applyManual" type="button">Use these locations</button><p class="hint" id="locationMessage">Location detection may depend on browser permission. Manual selection always works.</p></div>
+</section>
 <div class="profilebar"><div><strong>👋 Explore as a guest</strong><br><span id="profileHint">No sign-up needed · Demo preferences stay in this browser</span></div><select id="profileMode" aria-label="Choose demo profile"><option value="guest">Guest mode</option><option value="personal">Personalized demo</option></select></div><section class="layout"><article class="card"><div class="maphead"><div><strong id="mapTitle">LNCT campus map</strong><small id="mapSubtitle">Tap a building to choose it as your destination</small></div><span class="tag" id="modeTag">SCHEMATIC PREVIEW</span></div>
 <div class="mapstage"><svg id="campusMap" viewBox="0 0 820 650" role="img" aria-label="Fictional illustrative miniature campus map. Tap a building for details.">
 <defs>
@@ -336,6 +382,13 @@ body.guest-mode .footer{color:#929bb3}
 <section class="card panel"><h2>📷 Memory tree photos</h2><p class="hint">Save a few campus memories in this browser.</p><div class="memactions"><label class="secondary" for="photoUpload">＋ Add photo</label><input type="file" id="photoUpload" accept="image/*" multiple hidden><button class="secondary" id="clearPhotos">Clear photos</button></div><div class="memory-list" id="memoryList"><div class="memory">Your</div><div class="memory">campus</div><div class="memory">memories</div></div><p class="hint" id="memoryHint" style="margin:10px 0 0">Photos stay in this browser only. No account or cloud sync.</p></section>
 <section class="card panel"><div class="losttop"><h2>🔎 Lost &amp; Found</h2><span class="lostbadge">COMMUNITY</span></div><p class="hint">Post a found item or report something missing. This demo shows alerts in this browser.</p><form class="lostform" id="lostForm"><label class="field"><span style="font-size:12px;font-weight:750;color:#4c5a6d">ITEM NAME</span><input id="lostName" maxlength="60" placeholder="e.g. Blue water bottle" required></label><label class="field"><span style="font-size:12px;font-weight:750;color:#4c5a6d">POST TYPE</span><select id="lostType"><option value="Lost">I lost something</option><option value="Found">I found something</option></select></label><label class="field"><span style="font-size:12px;font-weight:750;color:#4c5a6d">LAST SEEN / FOUND AT</span><select id="lostPlace"></select></label><label class="field"><span style="font-size:12px;font-weight:750;color:#4c5a6d">DETAILS (OPTIONAL)</span><textarea id="lostDetails" maxlength="180" placeholder="Colour, time, or helpful details"></textarea></label><button class="primary" type="submit">＋ Post item</button></form><div class="lostlist" id="lostList"></div><p class="hint" id="lostHint" style="margin:10px 0 0">Sample posts are illustrative. Do not add private contact details.</p></section>
 </aside></section>
+
+<nav class="navix-bottom" aria-label="NAVIX shortcuts">
+ <button type="button" data-nav="lost"><span>🔎</span><span>Lost &amp; Found</span></button>
+ <button type="button" data-nav="events"><span>🎟️</span><span>Events</span></button>
+ <button type="button" data-nav="memory"><span>🌸</span><span>Memory Tree</span></button>
+ <button type="button" data-nav="forest"><span>🌳</span><span>Your Forest</span></button>
+</nav>
 <div class="avatar-modal" id="avatarModal" role="dialog" aria-modal="true" aria-labelledby="avatarHeading">
  <div class="avatar-box">
   <div class="avatar-kicker">YOUR PERSONAL CAMPUS WORLD</div>
@@ -397,5 +450,22 @@ avatarModal.addEventListener("click",e=>{if(e.target===avatarModal)avatarModal.c
 avatarEmoji=localStorage.getItem("navix-avatar-emoji")||avatarEmoji;
 profileMode.value="guest";enterGuest();
 
-updateProfile();updateTree();renderPhotos();renderLost();selectBuilding();findRoute()})();
+updateProfile();updateTree();renderPhotos();renderLost();selectBuilding();findRoute();
+
+/* Search panel + sketch-matched second location block + persistent bottom shortcuts */
+const searchWorkspace=$("searchWorkspace");
+function openSearch(){document.body.classList.add("search-open");searchWorkspace?.scrollIntoView({behavior:"smooth",block:"start"});}
+$("openSearch")?.addEventListener("click",openSearch);$("openSearchAlt")?.addEventListener("click",openSearch);
+function fillMirrorSelect(id,source){const target=$(id);if(!target||!source)return;target.replaceChildren(...[...source.options].map(o=>new Option(o.text,o.value)));target.value=source.value;}
+fillMirrorSelect("manualStart",start);fillMirrorSelect("manualEnd",end);
+$("manualStart")?.addEventListener("change",()=>{start.value=$("manualStart").value});
+$("manualEnd")?.addEventListener("change",()=>{end.value=$("manualEnd").value});
+$("applyManual")?.addEventListener("click",()=>{start.value=$("manualStart").value;end.value=$("manualEnd").value;findRoute();$("locationMessage").textContent="Your selected starting point and destination are ready.";});
+$("manualLocation")?.addEventListener("click",()=>{$("manualStart").focus();$("locationMessage").textContent="Choose a campus location from the list below.";});
+$("detectLocation")?.addEventListener("click",()=>{if(!navigator.geolocation){$("locationMessage").textContent="Location detection is not available here. Please select manually.";return;} $("locationMessage").textContent="Requesting location permission…";navigator.geolocation.getCurrentPosition(()=>{$("locationMessage").textContent="Your device location is outside this illustrative campus demo. Please select the nearest campus starting point manually."},()=>{$("locationMessage").textContent="Location permission unavailable. Please select your starting point manually."},{timeout:7000});});
+const oldFindRoute=findRoute;
+findRoute=function(){oldFindRoute();if($("searchDuration")){$("searchDuration").textContent=$("duration").textContent;$("searchDistance").textContent=$("distance").textContent;const m=Number(String($("distance").textContent).replace(/[^0-9.]/g,""));$("searchSteps").textContent=String(Math.round(m/0.75));$("searchRouteCopy").textContent=$("routeCopy").textContent;}fillMirrorSelect("manualStart",start);fillMirrorSelect("manualEnd",end);};
+document.querySelectorAll(".navix-bottom [data-nav]").forEach(b=>b.addEventListener("click",()=>{const key=b.dataset.nav;document.querySelectorAll(".navix-bottom button").forEach(x=>x.classList.toggle("active",x===b));if(key==="lost"){const el=document.querySelector("#lostForm")?.closest(".card");el?.scrollIntoView({behavior:"smooth",block:"start"});}else if(key==="events"){let el=document.getElementById("eventsPanel");if(!el){el=document.createElement("section");el.id="eventsPanel";el.className="card panel";el.innerHTML="<h2>🎟️ Campus Events</h2><p class='hint'>Your campus events space is ready for upcoming workshops, club meets and celebrations.</p><p class='hint'>Event listings will appear here when added to NAVIX.</p>";document.querySelector(".layout")?.append(el);}el.scrollIntoView({behavior:"smooth",block:"start"});}else if(key==="memory"){document.querySelector("#memoryList")?.closest(".card")?.scrollIntoView({behavior:"smooth",block:"start"});}else if(key==="forest"){document.getElementById("gamePanel")?.scrollIntoView({behavior:"smooth",block:"start"});}}));
+
+})();
 </script></body></html>
