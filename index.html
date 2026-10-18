@@ -179,6 +179,45 @@ body.personal-mode .layout>.side>.card:nth-child(4){animation-delay:.19s}
 .avatar-note{font-size:10px;line-height:1.45;color:#939bb5;margin:8px 0 0}
 @media(max-width:700px){.header-right{gap:8px}.login-btn{padding:7px 11px;font-size:12px}.status{display:none}body.guest-mode .layout{display:flex;flex-direction:column}body.guest-mode .layout>article{order:2;width:100%}body.guest-mode .layout>.side{display:contents}body.guest-mode .layout>.side>.card:first-child{order:1;width:100%}.avatar-modal{padding:12px;align-items:flex-end}.avatar-box{padding:22px 19px 17px;border-radius:26px;max-height:94dvh;overflow:auto}.avatar-orbit{width:105px;height:105px;border-radius:36px;margin:12px auto}.avatar-preview{font-size:59px}.avatar-box h2{font-size:23px}.avatar-intro{margin-bottom:13px}.avatar-label{margin-top:12px}}
 
+
+/* NAVIX GUEST LOBBY — polished, welcoming, still simple to navigate */
+body.guest-mode{background:radial-gradient(ellipse at 8% 8%,#fff0d7 0,transparent 29%),radial-gradient(ellipse at 95% 12%,#e5e3ff 0,transparent 30%),linear-gradient(155deg,#fbf8ff 0%,#f1f8ff 54%,#f1fbf1 100%)}
+body.guest-mode header{background:linear-gradient(110deg,#202f67 0%,#394d91 58%,#6552a5 100%);box-shadow:0 8px 26px #343d7d20}
+body.guest-mode .brand span{background:linear-gradient(145deg,#ffce69,#ff987d);box-shadow:0 4px 0 #d67b65,0 7px 14px #ffad5b35}
+body.guest-mode .header-right{gap:10px}
+body.guest-mode .login-btn{background:linear-gradient(135deg,#fff,#f4f1ff);color:#4a4caa;border:1px solid #e3ddff;box-shadow:0 4px 0 #d8d6f4,0 7px 15px #363b7a16;padding:10px 16px;transition:transform .18s ease}
+body.guest-mode .login-btn:hover{transform:translateY(-2px)}
+body.guest-mode main{padding-top:clamp(20px,3vw,38px)}
+body.guest-mode .hero{position:relative;isolation:isolate;overflow:hidden;align-items:center;min-height:154px;padding:clamp(20px,3vw,34px);margin-bottom:18px;border:1px solid #e6e3ff;border-radius:26px;background:linear-gradient(112deg,#fffdf9ed 0%,#f5f2ffed 55%,#eefaffed 100%);box-shadow:0 15px 36px #55539b10}
+body.guest-mode .hero:after{content:"🧭";position:absolute;right:clamp(18px,6vw,76px);top:50%;transform:translateY(-50%) rotate(-10deg);z-index:-1;font-size:clamp(68px,9vw,112px);opacity:.13;filter:drop-shadow(0 8px 8px #7d76c222)}
+body.guest-mode .hero .eyebrow{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:99px;background:#eeecff;color:#6353d7;font-size:10px;letter-spacing:.13em}
+body.guest-mode .hero .eyebrow:before{content:"✦";font-size:12px;color:#ff9c62}
+body.guest-mode .hero h1{max-width:620px;margin:11px 0 8px;font-size:clamp(28px,3.5vw,43px);letter-spacing:-.045em;line-height:1.06;color:#263564}
+body.guest-mode .hero .sub{max-width:47ch;color:#687798;font-size:clamp(13px,1.4vw,15px)}
+body.guest-mode .layout{gap:18px}
+body.guest-mode .layout>.card,body.guest-mode .side>.card{border:1px solid #e4e6fa;border-radius:22px;box-shadow:0 12px 30px #3b4c8510}
+body.guest-mode .maphead{padding:17px 20px;background:linear-gradient(105deg,#fff,#fff8ef)}
+body.guest-mode .maphead strong{color:#293761;font-size:16px}
+body.guest-mode .maphead small{margin-top:3px;color:#7582a1}
+body.guest-mode .tag{background:#eeebff;border-color:#e2ddff;color:#6253d3;padding:7px 10px}
+body.guest-mode .mapstage{background:linear-gradient(180deg,#bdeaff 0%,#e0f7ff 20%,#d6f4d1 39%,#b8e9bb 100%);border-top:1px solid #fff}
+body.guest-mode .mapstage:before{background:radial-gradient(ellipse at 15% 8%,#fff 0,transparent 15%),radial-gradient(ellipse at 80% 13%,#fff9 0,transparent 17%),radial-gradient(ellipse at 48% 67%,#fff8bd66 0,transparent 36%),radial-gradient(ellipse at 90% 85%,#77d99266 0,transparent 34%)}
+body.guest-mode .mapstage svg{filter:drop-shadow(0 9px 10px #315e4a18) saturate(1.13)}
+body.guest-mode .mapnote{background:#fffffff2;color:#53647d;border:1px solid #fff;border-radius:13px;box-shadow:0 6px 18px #315c4a18}
+body.guest-mode .maptools button{border-radius:13px;background:#fffdfd;border-color:#e4e4fb;color:#5557bd;box-shadow:0 4px 0 #dfe2f7,0 7px 14px #344a7815}
+body.guest-mode .side>.card:first-child .panel{padding:20px}
+body.guest-mode .side>.card:first-child .panel h2{font-size:18px;letter-spacing:-.02em;color:#2b3968}
+body.guest-mode .side>.card:first-child .hint{color:#7a86a3;line-height:1.5}
+body.guest-mode .field label{color:#526184}
+body.guest-mode .field select{border:1px solid #e1e5f7;background:#fbfbff;border-radius:12px;min-height:45px}
+body.guest-mode .swap{background:#f0efff;color:#6254cf;border-radius:10px}
+body.guest-mode .primary{background:linear-gradient(105deg,#596cff,#8b5aff);box-shadow:0 4px 0 #4a4bc4,0 8px 15px #655bdf24;border-radius:12px}
+body.guest-mode .result{background:linear-gradient(135deg,#f5f4ff,#eff9ff);border-color:#e4e3ff}
+body.guest-mode .mapfoot{background:#fffdfc;color:#8993ad}
+body.guest-mode .footer{color:#929bb3}
+@media(max-width:850px){body.guest-mode .hero{min-height:136px}body.guest-mode .hero:after{right:22px;opacity:.1}body.guest-mode .layout{gap:14px}}
+@media(max-width:560px){body.guest-mode main{padding:14px 10px 24px}body.guest-mode .hero{padding:20px 17px;min-height:138px;border-radius:21px;margin-bottom:13px}body.guest-mode .hero h1{font-size:30px;max-width:15ch}body.guest-mode .hero .sub{max-width:29ch;font-size:13px}body.guest-mode .hero:after{right:8px;top:19px;transform:none;font-size:60px;opacity:.1}body.guest-mode .maphead{padding:13px 14px}body.guest-mode .maphead strong{font-size:14px}body.guest-mode .side>.card:first-child .panel{padding:16px}body.guest-mode .login-btn{padding:8px 12px;font-size:12px}}
+
 </style></head>
 <body>
 <header><div class="brand"><span>⌖</span>NAVIX</div><div class="header-right"><div class="status">● Campus explorer　·　LNCT Bhopal</div><button class="login-btn" id="loginBtn"><span id="headerAvatar">✦</span><span id="loginLabel">Log in</span></button></div></header>
