@@ -354,8 +354,9 @@ $("loginBtn").addEventListener("click",()=>{avatarName.value=localStorage.getIte
 $("backGuest").addEventListener("click",()=>avatarModal.classList.remove("show"));
 $("createAvatar").addEventListener("click",()=>{const nick=avatarName.value.trim()||"Explorer";localStorage.setItem("navix-avatar-name",nick);localStorage.setItem("navix-avatar-emoji",avatarEmoji);localStorage.setItem("navix-avatar-glow",avatarGlow);localStorage.setItem("navix-profile-mode","personal");avatarModal.classList.remove("show");profileMode.value="personal";updateProfile();enterPersonal();if(lastRoute)findRoute();});
 avatarModal.addEventListener("click",e=>{if(e.target===avatarModal)avatarModal.classList.remove("show")});
-const priorName=localStorage.getItem("navix-avatar-name");
-if(priorName){avatarEmoji=localStorage.getItem("navix-avatar-emoji")||avatarEmoji;profileMode.value="personal";enterPersonal()}else{profileMode.value="guest";enterGuest()}
+/* Always open in the clean guest interface; login is an intentional opt-in. */
+avatarEmoji=localStorage.getItem("navix-avatar-emoji")||avatarEmoji;
+profileMode.value="guest";enterGuest();
 
 updateProfile();updateTree();renderPhotos();renderLost();selectBuilding();findRoute()})();
 </script></body></html>
