@@ -258,11 +258,80 @@ body.personal-mode .guest-search{display:none}
 body.personal-mode .search-workspace{display:none}
 @media(max-width:650px){.search-workspace{grid-template-columns:1fr}.search-hint{display:none}.search-block{padding:13px}.navix-bottom button{font-size:9px}.navix-bottom button span:first-child{font-size:20px}main{padding-bottom:calc(92px + env(safe-area-inset-bottom))}}
 
+
+/* ANIME DREAM GUEST WORLD — original chibi campus buddy + sakura daydream */
+body.guest-mode{background:radial-gradient(ellipse at 5% 4%,#fff0f7 0,transparent 31%),radial-gradient(ellipse at 96% 15%,#e5e2ff 0,transparent 32%),linear-gradient(160deg,#fff8fc 0%,#f6f2ff 48%,#edf9ff 100%);color:#37345f}
+body.guest-mode header{background:linear-gradient(105deg,#292b62,#5a4b91 56%,#936ba8);box-shadow:0 8px 28px #654e8b26}
+body.guest-mode .brand span{background:linear-gradient(145deg,#ffc6e4,#ff9dba);box-shadow:0 4px 0 #d77ca4,0 8px 15px #e98dbb45}
+body.guest-mode .hero{min-height:228px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative;overflow:hidden;isolation:isolate;border:1px solid #f0d9f0;border-radius:30px;padding:clamp(22px,3.5vw,38px);background:linear-gradient(115deg,#fffafd 0%,#fff0f7 44%,#f0edff 100%);box-shadow:0 18px 40px #8d68a416}
+body.guest-mode .hero:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.7;background-image:radial-gradient(#ffb7d8 1.3px,transparent 1.3px),radial-gradient(#c8c0ff 1px,transparent 1px);background-size:33px 33px,47px 47px;background-position:0 0,15px 20px;mask-image:linear-gradient(90deg,transparent,#000 68%)}
+body.guest-mode .hero:after{content:"🌸";position:absolute;right:29%;top:16%;z-index:-1;font-size:28px;opacity:.45;animation:petalFloat 5s ease-in-out infinite}
+body.guest-mode .hero-copy{position:relative;z-index:2;max-width:560px}
+body.guest-mode .hero .eyebrow{display:inline-flex;background:#ffe7f2;color:#ad4d84;border:1px solid #ffd5e8;padding:7px 12px;border-radius:99px;letter-spacing:.12em;font-size:10px}
+body.guest-mode .hero h1{font-size:clamp(30px,4.2vw,49px);line-height:1.03;letter-spacing:-.05em;color:#393264;margin:14px 0 10px;max-width:11ch}
+body.guest-mode .hero h1 span{color:#d95b9c;text-shadow:0 3px 0 #ffe0ef}
+body.guest-mode .hero .sub{font-size:clamp(13px,1.4vw,16px);color:#7b7098;max-width:34ch;line-height:1.65}
+body.guest-mode .hero-stickers{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}
+body.guest-mode .hero-stickers span{font-size:10px;font-weight:800;letter-spacing:.02em;padding:7px 10px;border-radius:99px;background:#fff;border:1px solid #f1ddec;color:#8c689c;box-shadow:0 3px 0 #f4e0ef}
+body.guest-mode .guest-mascot{position:relative;flex:0 0 clamp(130px,23vw,220px);width:clamp(130px,23vw,220px);align-self:stretch;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;z-index:1;margin-right:clamp(0px,2vw,22px);animation:mascotBob 3s ease-in-out infinite}
+body.guest-mode .guest-mascot svg{width:100%;max-height:210px;overflow:visible;filter:drop-shadow(0 10px 8px #a875a52a)}
+body.guest-mode .mascot-caption{font-size:11px;font-weight:900;color:#8d548f;background:#fffdfcdd;border:1px solid #f0d9f1;border-radius:99px;padding:6px 11px;white-space:nowrap;box-shadow:0 4px 0 #f0dff1;margin-top:-3px}
+body.guest-mode .mascot-caption span{color:#d95b9c}
+body.guest-mode .mascot-spark,.mascot-heart{position:absolute;font-size:24px;color:#f2a5cc;text-shadow:0 3px 10px #f4acd766;animation:sparkPulse 2s ease-in-out infinite}
+body.guest-mode .spark-one{top:15%;left:4%}.spark-two{top:29%;right:0;color:#a49aff;animation-delay:-.8s}
+body.guest-mode .mascot-heart{top:48%;left:0;font-size:22px;color:#ee87b8;animation-delay:-1.1s}
+body.guest-mode .guest-search{margin:0 0 16px;gap:10px}
+body.guest-mode .search-open-btn{border:1px solid #f0dff2;border-radius:20px;background:#fffdfef0;box-shadow:0 7px 0 #f4e6f4,0 12px 24px #725a9b0b;padding:15px 17px}
+body.guest-mode .search-open-btn .search-glyph{color:#d45d9d;font-size:25px}
+body.guest-mode .search-open-btn strong{color:#4d4274;font-size:14px}
+body.guest-mode .search-open-btn small{color:#a092b3}
+body.guest-mode .search-hint{background:linear-gradient(135deg,#ffdaeb,#e7dfff);color:#8d4b91;border:1px solid #f1cde5;border-radius:17px;box-shadow:0 5px 0 #e3cce8}
+body.guest-mode .layout>.card,body.guest-mode .side>.card{border:1px solid #eddff2;border-radius:24px;box-shadow:0 14px 32px #6c5c9910}
+body.guest-mode .maphead{background:linear-gradient(105deg,#fffaff,#fff0f8);padding:17px 20px}
+body.guest-mode .maphead strong{color:#4c3e75;font-size:16px}
+body.guest-mode .maphead small{color:#9b8caf}
+body.guest-mode .tag{background:#ffe7f3;color:#b64f89;border-color:#fbd4e8}
+body.guest-mode .mapstage{background:linear-gradient(180deg,#c9edff 0%,#e9f8ff 22%,#d9f6d5 39%,#bdebc4 100%)}
+body.guest-mode .mapstage:before{background:radial-gradient(ellipse at 14% 8%,#fff 0,transparent 16%),radial-gradient(ellipse at 82% 13%,#fff9 0,transparent 18%),radial-gradient(ellipse at 45% 65%,#fff2c866 0,transparent 36%),radial-gradient(ellipse at 88% 85%,#8ce0ae55 0,transparent 34%)}
+body.guest-mode .maptools button{color:#b45491;border-color:#f1d9ed;box-shadow:0 4px 0 #f2e1f0,0 7px 14px #725a9b13}
+body.guest-mode .search-workspace .search-block{border-color:#efdef1;border-radius:22px;box-shadow:0 12px 28px #6c5c9910}
+body.guest-mode .search-block h2{color:#514176}
+body.guest-mode .search-block select{border-color:#eadfee;border-radius:13px;background:#fffaff}
+body.guest-mode .search-metrics div{background:#fff0f7}
+body.guest-mode .search-metrics strong{color:#bb548e}
+body.guest-mode .primary{background:linear-gradient(105deg,#e76ba9,#9a79ee);box-shadow:0 4px 0 #b74e9b,0 8px 15px #bd70c224;border-radius:13px}
+body.guest-mode .secondary,body.guest-mode .swap{background:#f7eafb;color:#9459a5;border-radius:12px}
+body.guest-mode .navix-bottom{background:#fffaffed;border-color:#f0dff2;box-shadow:0 -8px 24px #715b8b12}
+body.guest-mode .navix-bottom button{color:#9b8cae}
+body.guest-mode .navix-bottom button.active{background:#ffeaf4;color:#c05291}
+body.guest-mode .mapfoot{background:#fffaff;color:#a093b1}
+body.guest-mode .footer{color:#a095b3}
+@keyframes mascotBob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-7px) rotate(1deg)}}
+@keyframes sparkPulse{0%,100%{transform:scale(.85) rotate(-8deg);opacity:.65}50%{transform:scale(1.12) rotate(10deg);opacity:1}}
+@keyframes petalFloat{0%,100%{transform:translateY(0) rotate(-10deg)}50%{transform:translateY(12px) rotate(12deg)}}
+@media(max-width:560px){
+ body.guest-mode .hero{min-height:220px;padding:20px 15px;border-radius:24px;align-items:center;gap:0}
+ body.guest-mode .hero-copy{max-width:62%}
+ body.guest-mode .hero h1{font-size:29px;max-width:9ch;margin:12px 0 8px}
+ body.guest-mode .hero .sub{font-size:12px;line-height:1.5;max-width:24ch}
+ body.guest-mode .hero-stickers{gap:5px;margin-top:11px}
+ body.guest-mode .hero-stickers span{font-size:9px;padding:6px 7px}
+ body.guest-mode .guest-mascot{flex-basis:42%;width:42%;margin:0 -5px 0 0;justify-content:center}
+ body.guest-mode .guest-mascot svg{max-height:165px;width:115%}
+ body.guest-mode .mascot-caption{font-size:9px;padding:5px 7px}
+ body.guest-mode .mascot-spark{font-size:19px}
+ body.guest-mode .mascot-heart{font-size:17px}
+ body.guest-mode .hero:after{right:35%;top:8%;font-size:19px}
+ body.guest-mode .search-open-btn{padding:13px 12px}
+ body.guest-mode .maphead{padding:13px 14px}
+}
+@media(prefers-reduced-motion:reduce){body.guest-mode .guest-mascot,body.guest-mode .mascot-spark,body.guest-mode .mascot-heart,body.guest-mode .hero:after{animation:none!important}}
+
 </style></head>
 <body>
 <header><div class="brand"><span>⌖</span>NAVIX</div><div class="header-right"><div class="status">● Campus explorer　·　LNCT Bhopal</div><button class="login-btn" id="loginBtn"><span id="headerAvatar">✦</span><span id="loginLabel">Log in</span></button></div></header>
 <main>
-<section class="hero"><div><div class="eyebrow">Your campus, easier to explore</div><h1>Find your way around LNCT.</h1><p class="sub">Choose a place, follow your route, and make every campus walk count.</p></div><div class="modes"><button class="mode active" id="normalMode">◈ Map mode</button><button class="mode" id="gameMode">✦ Game mode</button></div></section>
+<section class="hero"><div class="hero-copy"><div class="eyebrow">A LITTLE MAGIC ON CAMPUS</div><h1>Let's explore, <span>bestie!</span></h1><p class="sub">Every hallway has a story. Come find your little corner of LNCT ✨</p><div class="hero-stickers"><span>♡ find your way</span><span>✦ tiny adventures</span></div></div><div class="guest-mascot" aria-label="Original pink-haired anime campus buddy"><span class="mascot-spark spark-one">✦</span><span class="mascot-spark spark-two">✧</span><span class="mascot-heart">♡</span><svg viewBox="0 0 210 220" role="img" aria-label="Cute pink-haired anime girl campus mascot"><defs><linearGradient id="hairPink" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb9dd"/><stop offset="1" stop-color="#f16eae"/></linearGradient><linearGradient id="dressLilac" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a9a1ff"/><stop offset="1" stop-color="#776be7"/></linearGradient></defs><ellipse cx="105" cy="204" rx="54" ry="9" fill="#7c72bd" opacity=".15"/><path d="M56 102 Q37 56 65 31 Q101 0 140 29 Q171 48 153 111 L145 155 L62 153Z" fill="url(#hairPink)" stroke="#d85c9b" stroke-width="2"/><path d="M66 139 Q45 155 59 183 L81 190 L86 146Z M141 137 Q164 155 150 183 L128 190 L124 145Z" fill="#f58bc1"/><path d="M74 132 Q105 116 136 132 L151 180 Q105 201 59 180Z" fill="url(#dressLilac)" stroke="#655bd0" stroke-width="2"/><path d="M84 139 L105 154 L126 139" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/><path d="M91 151 L105 166 L119 151" fill="#ffcf73" stroke="#fff0c4" stroke-width="2"/><path d="M61 79 Q49 40 83 24 Q115 8 143 33 Q163 50 151 84 L145 119 Q135 139 105 140 Q74 137 63 115Z" fill="#ffe0d0" stroke="#e8a2b4" stroke-width="2"/><path d="M59 91 Q42 45 72 25 Q99 4 129 20 Q160 30 159 71 L148 62 Q138 42 117 39 Q95 61 65 61Z" fill="url(#hairPink)" stroke="#d85c9b" stroke-width="2"/><path d="M61 54 Q43 84 58 116 L70 130 L77 88Z M148 55 Q166 86 151 117 L139 130 L134 84Z" fill="url(#hairPink)" stroke="#d85c9b" stroke-width="2"/><path d="M70 58 Q89 76 107 54 Q126 73 147 56 L143 84 Q129 98 107 86 Q84 99 68 82Z" fill="url(#hairPink)"/><ellipse cx="88" cy="91" rx="9" ry="12" fill="#fff"/><ellipse cx="124" cy="91" rx="9" ry="12" fill="#fff"/><ellipse cx="90" cy="94" rx="5" ry="8" fill="#51436e"/><ellipse cx="122" cy="94" rx="5" ry="8" fill="#51436e"/><circle cx="92" cy="91" r="2.4" fill="#fff"/><circle cx="124" cy="91" r="2.4" fill="#fff"/><path d="M98 111 Q106 119 114 110" fill="none" stroke="#c96b86" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="76" cy="106" rx="8" ry="4" fill="#ff9cb7" opacity=".75"/><ellipse cx="136" cy="106" rx="8" ry="4" fill="#ff9cb7" opacity=".75"/><g transform="translate(66 51) rotate(-20)"><path d="M0 0 L9 4 L14 14 L4 11Z" fill="#34305f"/><path d="M5 2 L9 5 L11 10 L6 8Z" fill="#ffdf76"/></g><g transform="translate(137 50) rotate(18)"><path d="M0 0 L9 4 L14 14 L4 11Z" fill="#34305f"/><path d="M5 2 L9 5 L11 10 L6 8Z" fill="#ffdf76"/></g><path d="M72 178 L66 198 Q77 204 91 198 L88 180 M122 180 L119 198 Q133 204 145 198 L139 177" fill="#ffe0d0" stroke="#e8a2b4" stroke-width="2"/><path d="M62 197 Q76 190 91 198 L91 207 Q74 213 58 206Z M119 198 Q135 190 149 197 L153 206 Q136 213 118 207Z" fill="#fff" stroke="#d9d8f7" stroke-width="2"/></svg><div class="mascot-caption">hi, I'm Momo! <span>૮ ˶ᵔ ᵕ ᵔ˶ ა</span></div></div><div class="modes"><button class="mode active" id="normalMode">◈ Map mode</button><button class="mode" id="gameMode">✦ Game mode</button></div></section>
 
 <div class="guest-search" id="guestSearchBar"><button class="search-open-btn" id="openSearch" type="button"><span class="search-glyph">⌕</span><span><strong>Search your campus</strong><small>Find a building or plan a walking route</small></span></button><button class="search-hint" id="openSearchAlt" type="button" aria-label="Open route search">GO ↗</button></div>
 <section class="search-workspace" id="searchWorkspace" aria-label="Campus search and route planner">
