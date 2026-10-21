@@ -443,11 +443,14 @@ body.guest-mode .footer{color:#a095b3}
 
 <div class="guest-search" id="guestSearchBar"><button class="search-open-btn" id="openSearch" type="button"><span class="search-glyph">⌕</span><span><strong>Search your campus</strong><small>Find a building or plan a walking route</small></span></button><button class="search-hint" id="openSearchAlt" type="button" aria-label="Open route search">GO ↗</button></div>
 <section class="search-workspace" id="searchWorkspace" aria-label="Campus search and route planner">
- <div class="search-block search-single-block"><h2>✦ Where do you want to go?</h2>
- <div class="field"><label for="start">STARTING POINT</label><div class="search-input-row"><span class="search-field-icon">◎</span><select id="start" aria-label="Starting point"></select><button class="current-location-btn" id="detectLocation" type="button">Use current location</button></div></div>
+ <div class="search-block search-point-block"><span class="search-step">01 · START HERE</span><h2>📍 Where are you now?</h2>
+ <div class="field"><label for="start">STARTING POINT</label><div class="search-input-row"><span class="search-field-icon">◎</span><select id="start" aria-label="Starting point"><option value="__current_location__">◎ Use current location</option></select></div></div>
+ <p class="search-card-note">Choose a campus spot, or use your device location.</p></div>
+ <div class="search-block search-point-block destination-block"><span class="search-step">02 · YOUR NEXT STOP</span><h2>✨ Where to?</h2>
  <div class="field"><label for="end">DESTINATION</label><div class="search-input-row"><span class="search-field-icon">⌖</span><select id="end" aria-label="Destination"></select></div></div>
- <button class="primary" id="findRoute">Search route →</button><p class="hint" id="locationMessage" aria-live="polite">Choose your starting point or use your current location.</p>
- <div class="search-metrics"><div><small>Time</small><strong id="searchDuration">—</strong></div><div><small>Steps</small><strong id="searchSteps">—</strong></div><div><small>Distance</small><strong id="searchDistance">—</strong></div></div><p class="routecopy" id="searchRouteCopy">Choose your start and destination.</p></div>
+ <p class="search-card-note">Pick the building or place you want to reach.</p></div>
+ <div class="search-route-action"><button class="primary" id="findRoute">Find my way →</button><p class="hint" id="locationMessage" aria-live="polite">Choose a starting point and destination.</p>
+ <div class="search-metrics"><div><small>Walking time</small><strong id="searchDuration">—</strong></div><div><small>Steps</small><strong id="searchSteps">—</strong></div><div><small>Distance</small><strong id="searchDistance">—</strong></div></div><p class="routecopy" id="searchRouteCopy">Your walking route will appear here.</p></div>
 </section>
 <div class="profilebar"><div><strong>👋 Explore as a guest</strong><br><span id="profileHint">No sign-up needed · Demo preferences stay in this browser</span></div><select id="profileMode" aria-label="Choose demo profile"><option value="guest">Guest mode</option><option value="personal">Personalized demo</option></select></div><section class="layout"><article class="card"><div class="maphead"><div><strong id="mapTitle">LNCT campus map</strong><small id="mapSubtitle">Tap a building to choose it as your destination</small></div><span class="tag" id="modeTag">SCHEMATIC PREVIEW</span></div>
 <div class="mapstage"><svg id="campusMap" viewBox="0 0 820 650" role="img" aria-label="Fictional illustrative miniature campus map. Tap a building for details.">
@@ -678,7 +681,8 @@ updateProfile();updateTree();renderGarden();renderPhotos();renderLost();selectBu
 const searchWorkspace=$("searchWorkspace");
 function openSearch(){document.body.classList.add("search-open");searchWorkspace?.classList.add("open");searchWorkspace?.scrollIntoView({behavior:"smooth",block:"start"});}
 $("openSearch")?.addEventListener("click",openSearch);$("openSearchAlt")?.addEventListener("click",openSearch);
-$("detectLocation")?.addEventListener("click",()=>{const msg=$("locationMessage");if(!navigator.geolocation){msg.textContent="Location detection is not available here. Please choose your starting point manually.";return;}msg.textContent="Requesting location permission…";navigator.geolocation.getCurrentPosition(()=>{msg.textContent="Your device location was detected, but this demo uses illustrative campus locations. Please select the nearest campus starting point from the first bar."},()=>{msg.textContent="Location permission unavailable. Please select your starting point from the first bar."},{timeout:7000});});
+function useCurrentLocation(){const msg=$("locationMessage");if(!navigator.geolocation){start.value="Main Gate";msg.textContent="Location access isn't available here, so Main Gate is selected as a demo starting point. You can change it anytime.";return;}msg.textContent="Asking permission for your current location…";navigator.geolocation.getCurrentPosition(()=>{start.value="Main Gate";msg.textContent="Device location permission received. This prototype uses illustrative campus points, so Main Gate is selected as the demo start—change it to the nearest spot if needed.";if(lastRoute)findRoute();},()=>{start.value="Main Gate";msg.textContent="Location permission wasn't available. Main Gate is selected for now; you can choose another campus spot.";},{timeout:7000});}
+start.addEventListener("change",()=>{if(start.value==="__current_location__"){useCurrentLocation();return;}if(lastRoute)findRoute();});
 const oldFindRoute=findRoute;
 findRoute=function(){oldFindRoute();if($("searchDuration")){$("searchDuration").textContent=$("duration").textContent;$("searchDistance").textContent=$("distance").textContent;const m=Number(String($("distance").textContent).replace(/[^0-9.]/g,""));$("searchSteps").textContent=String(Math.round(m/0.75));$("searchRouteCopy").textContent=$("routeCopy").textContent;}};
 /* Bottom navigation is a real five-tab app shell: every feature gets its own focused screen. */
@@ -987,6 +991,19 @@ body.guest-mode .mapfoot,body.personal-mode .mapfoot{padding:9px 14px}
  .navix-bottom{width:100%;border-radius:20px 20px 0 0;left:0;transform:none;max-width:none}
 }
 @media(prefers-reduced-motion:reduce){.nj-splash-orbit{animation:none!important}}
+/* Search planner: two clear point cards and one route-result area */
+.search-workspace{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+.search-workspace .search-point-block{padding:17px;border-radius:20px;background:linear-gradient(155deg,#fff 0%,#fff8fd 100%);border:1px solid #eadff7;box-shadow:0 10px 28px #6b559511}
+.search-step{display:inline-block;font-size:10px;letter-spacing:.09em;font-weight:900;color:#a16bb5;margin-bottom:8px}
+.search-point-block h2{font-size:16px;margin:0 0 13px;color:#34305f}
+.search-card-note{font-size:11px;color:#9487a7;line-height:1.45;margin:9px 1px 0}
+.search-route-action{grid-column:1/-1;border:1px solid #eadff7;border-radius:20px;background:#fff;padding:15px;box-shadow:0 8px 24px #6b55950b}
+.search-route-action .primary{width:100%;padding:13px;border-radius:14px;background:linear-gradient(110deg,#e66ba9,#9a79ee);color:white}
+.search-route-action .hint{margin:9px 0;color:#8b7e9e;font-size:11px}
+.search-route-action .routecopy{overflow-wrap:anywhere;font-size:12px}
+.search-point-block .search-input-row{min-height:54px}
+.search-point-block select{font-size:13px;min-width:0}
+@media(max-width:650px){.search-workspace{grid-template-columns:minmax(0,1fr);gap:10px}.search-route-action{grid-column:auto}.search-workspace .search-point-block{padding:15px}.search-route-action{padding:13px}.search-card-note{font-size:10px}}
 </style>
 <script id="navix-final-flow-fix">
 /* Submission flow: one welcome screen -> account/avatar -> campus home, or guest -> campus home. */
