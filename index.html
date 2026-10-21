@@ -477,6 +477,37 @@ body[data-nav-tab="forest"] #gamePanel .forest-footnote{color:#78927d}
 @media(min-width:560px){body[data-nav-tab="forest"] #gamePanel .garden-items{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){.forest-app-tab{transition:none!important}}
 
+
+/* Forest-inspired daily overview: isometric green plots + calm analytics */
+body[data-nav-tab="forest"] #gamePanel{padding:0 0 18px!important;overflow:hidden}
+body[data-nav-tab="forest"] #gamePanel>.forest-topline,body[data-nav-tab="forest"] #gamePanel>h2,body[data-nav-tab="forest"] #gamePanel>p.hint,body[data-nav-tab="forest"] #gamePanel>.forest-stats,body[data-nav-tab="forest"] #gamePanel>.forest-scene,body[data-nav-tab="forest"] #gamePanel>.forest-growth,body[data-nav-tab="forest"] #gamePanel>.progress,body[data-nav-tab="forest"] #gamePanel>.forest-progress-caption,body[data-nav-tab="forest"] #gamePanel>.forest-actions,body[data-nav-tab="forest"] #gamePanel>.garden-collection,body[data-nav-tab="forest"] #gamePanel>.forest-inline-shop,body[data-nav-tab="forest"] #gamePanel>.forest-app-nav,body[data-nav-tab="forest"] #gamePanel>.forest-footnote{margin-left:14px;margin-right:14px}
+body[data-nav-tab="forest"] #gamePanel>.forest-topline{padding-top:15px}
+body[data-nav-tab="forest"] #gamePanel>.forest-overview{margin:0!important;padding:0 12px 14px;background:#f3f7f2;color:#354a3b}
+.forest-datebar{display:flex;align-items:center;justify-content:space-between;padding:12px 5px 4px;font-size:12px;color:#526b5a}
+.forest-datebar>span{font-size:22px;color:#47745a}.forest-datebar strong{font-size:12px;font-weight:800}
+.forest-island-wrap{height:258px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#075744;border-radius:0 0 17px 17px}
+.forest-island{position:relative;width:230px;height:145px;transform:rotateX(56deg) rotateZ(45deg);transform-style:preserve-3d;background:#7fd91d;border:2px solid #62b70c;box-shadow:0 20px 0 #986b28,0 23px 0 #6d4b23;border-radius:5px;display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(5,1fr);gap:2px;padding:4px}
+.forest-tile{background:linear-gradient(135deg,#a5ed35,#83d81d);border:1px solid #72c91b;position:relative}
+.forest-tile:nth-child(3n){background:#96e72a}.forest-tile:nth-child(4n){background:#8cdb20}
+.forest-island-tree{position:absolute;z-index:3;font-size:26px;filter:drop-shadow(1px 3px 0 #447d18);transform:rotateZ(-45deg) rotateX(-56deg)}
+.forest-island-tree.tree-a{left:29%;top:12%}.forest-island-tree.tree-b{left:61%;top:48%;font-size:23px}.forest-island-tree.tree-c{left:43%;top:64%;font-size:19px}
+.forest-island-sign{position:absolute;z-index:4;left:45%;top:20%;display:flex;flex-direction:column;align-items:center;gap:2px;transform:rotateZ(-45deg) rotateX(-56deg);font-size:21px;filter:drop-shadow(0 2px 0 #7c5728)}
+.forest-island-sign small{background:#f5c65f;color:#6a4b24;padding:3px 5px;font-size:6px;font-weight:900;letter-spacing:.04em;border:1px solid #d9a347}
+.forest-island-counts{position:absolute;bottom:10px;right:15px;display:flex;gap:12px;color:#e4fff0;font-size:12px}
+.forest-overview-card{background:#fff;border-radius:15px;padding:14px 13px;margin-top:12px;box-shadow:0 3px 14px #315b3710;border:1px solid #e5ece4}
+.forest-card-heading{display:flex;align-items:center;justify-content:space-between;color:#3b5140;font-size:13px}.forest-card-heading>span{font-size:10px;color:#9aaba0}
+.forest-overview-card p{font-size:11px;color:#87968b;margin:15px 0 8px}.forest-overview-card p b{color:#4c9660}
+.forest-chart{height:105px;position:relative;border-bottom:1px solid #e9eee9;background:repeating-linear-gradient(to bottom,transparent 0,transparent 20px,#edf2ed 21px,#edf2ed 22px)}
+.forest-chart-grid{position:absolute;inset:0 auto 0 0;display:flex;flex-direction:column;justify-content:space-between;color:#a2b0a5;font-size:8px}
+.forest-chart svg{position:absolute;left:18px;bottom:0;width:calc(100% - 18px);height:85%;overflow:visible}
+.forest-chart svg path{fill:none;stroke:#78c5a4;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.forest-chart-empty{position:absolute;z-index:1;inset:35px 0 auto 18px;text-align:center;color:#b3beb5;font-size:11px}
+.forest-chart-legend{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:10px;color:#849287}.forest-chart-legend span{display:flex;align-items:center;gap:6px}.forest-chart-legend span i{width:8px;height:8px;border-radius:50%;background:#78c5a4}.forest-chart-legend b{color:#42895a}
+.forest-mini-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:15px}
+.forest-mini-stats>div{background:#f2f8f2;border-radius:10px;padding:10px 7px;display:flex;flex-direction:column;gap:5px}.forest-mini-stats small{font-size:9px;color:#819286}.forest-mini-stats b{font-size:16px;color:#36754a}
+.forest-growth-note{font-size:10px;color:#8b9a8d;margin-top:13px}
+@media(min-width:700px){body[data-nav-tab="forest"] #gamePanel>.forest-overview{padding:0 24px 22px}.forest-island-wrap{height:300px}.forest-island{width:280px;height:175px}.forest-overview-card{padding:18px}}
+
 </style></head>
 <body>
 
@@ -622,6 +653,16 @@ body[data-nav-tab="forest"] #gamePanel .forest-footnote{color:#78927d}
 <section class="card panel gamepanel forest-world" id="gamePanel">
  <div class="forest-topline"><span class="forest-kicker">YOUR LITTLE WORLD</span><span class="forest-weather">☀️ peaceful day</span><span class="forest-wallet">🪙 <b id="forestWallet">40</b> coins</span></div>
  <h2>🌳 Your Forest</h2><p class="hint">Every campus walk helps your little world grow.</p>
+ <section class="forest-overview" aria-label="Forest daily overview">
+  <div class="forest-datebar"><span>‹</span><strong id="forestToday">October 22, 2026 (Today)</strong><span>⋯</span></div>
+  <div class="forest-island-wrap"><div class="forest-island" aria-label="Your planted forest plot">
+   <span class="forest-tile tile-1"></span><span class="forest-tile tile-2"></span><span class="forest-tile tile-3"></span><span class="forest-tile tile-4"></span><span class="forest-tile tile-5"></span><span class="forest-tile tile-6"></span><span class="forest-tile tile-7"></span><span class="forest-tile tile-8"></span><span class="forest-tile tile-9"></span><span class="forest-tile tile-10"></span><span class="forest-tile tile-11"></span><span class="forest-tile tile-12"></span><span class="forest-tile tile-13"></span><span class="forest-tile tile-14"></span><span class="forest-tile tile-15"></span><span class="forest-tile tile-16"></span><span class="forest-tile tile-17"></span><span class="forest-tile tile-18"></span><span class="forest-tile tile-19"></span><span class="forest-tile tile-20"></span><span class="forest-tile tile-21"></span><span class="forest-tile tile-22"></span><span class="forest-tile tile-23"></span><span class="forest-tile tile-24"></span><span class="forest-tile tile-25"></span>
+   <span class="forest-island-tree tree-a">🌳</span><span class="forest-island-tree tree-b">🌲</span><span class="forest-island-tree tree-c">🌱</span>
+   <span class="forest-island-sign">🌿<small>MY FOREST</small></span>
+  </div><div class="forest-island-counts"><span>🌳 <b id="forestIslandTreeCount">1</b></span><span>🪙 <b id="forestIslandCoinCount">40</b></span></div></div>
+  <div class="forest-overview-card"><div class="forest-card-heading"><strong>👣 Walking Progress</strong><span>ⓘ</span></div><p>Total steps today: <b id="forestDailySteps">0</b></p><div class="forest-chart" aria-label="Daily walking progress"><div class="forest-chart-grid"><i>5k</i><i>4k</i><i>3k</i><i>2k</i><i>1k</i></div><div class="forest-chart-empty" id="forestChartEmpty">Your daily steps will appear here</div><svg viewBox="0 0 320 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 63 L45 57 L90 60 L135 39 L180 47 L225 25 L270 31 L320 8" /></svg></div><div class="forest-chart-legend"><span><i></i>Steps walked</span><b id="forestDailyCoins">+0 🪙 today</b></div></div>
+  <div class="forest-overview-card"><div class="forest-card-heading"><strong>🌱 Forest Growth</strong><span>ALL TIME</span></div><div class="forest-mini-stats"><div><small>Total steps</small><b id="forestTotalSteps">0</b></div><div><small>Total coins</small><b id="forestTotalCoins">40</b></div><div><small>Trees planted</small><b id="forestTotalTrees">1</b></div></div><div class="forest-growth-note">Keep walking to grow your forest, one step at a time ✨</div></div>
+ </section>
  <div class="forest-stats"><div class="stat"><small>✨ Walking points</small><strong id="points">0</strong></div><div class="stat"><small>👣 Steps explored</small><strong id="steps">0</strong></div></div>
  <div class="forest-scene" aria-label="Your virtual forest garden"><div class="forest-sun">☀️</div><span class="forest-cloud cloud-one">☁️</span><span class="forest-cloud cloud-two">☁️</span><div class="forest-hill hill-back"></div><div class="forest-hill hill-front"></div><div class="forest-main-tree" id="tree">🌱</div><div class="forest-ground-flower flower-one">🌼</div><div class="forest-ground-flower flower-two">🌷</div><div class="forest-ground-flower flower-three">🍄</div><div class="forest-buddy" id="forestBuddy">🦊</div></div>
  <div class="forest-growth"><div><strong id="treeLabel">A new beginning</strong><span id="forestStage">Your first sprout is waiting</span></div><span class="forest-level" id="forestLevel">LV. 1</span></div><div class="progress"><div id="treeProgress"></div></div><div class="forest-progress-caption"><span>Next growth</span><span>50 points per stage</span></div>
@@ -972,6 +1013,21 @@ document.querySelectorAll(".look-tab").forEach(t=>t.addEventListener("click",()=
    const target=targets[key];
    if(target){target.scrollIntoView({behavior:"smooth",block:"center"});target.animate?.([{outline:"2px solid #8cc99b"},{outline:"2px solid transparent"}],{duration:850});}
  }));
+})();
+</script>
+
+
+<script id="navix-forest-overview-bindings">
+(function(){
+ const $=id=>document.getElementById(id);
+ const now=new Date();const date=$("forestToday");if(date)date.textContent=now.toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"})+" (Today)";
+ function syncForestOverview(){
+  let daily=Number(localStorage.getItem("navix-daily-steps")||0),total=Number(localStorage.getItem("navix-steps")||0),coins=Number(localStorage.getItem("navix-forest-coins")||40);
+  let dailyCoins=Number(localStorage.getItem("navix-daily-coins")||0),plants=[];try{plants=JSON.parse(localStorage.getItem("navix-garden-plants")||"[]")}catch{}
+  const set=(id,v)=>{if($(id))$(id).textContent=String(v)};
+  set("forestDailySteps",daily.toLocaleString());set("forestTotalSteps",total.toLocaleString());set("forestDailyCoins", "+"+dailyCoins+" 🪙 today");set("forestTotalCoins",coins.toLocaleString());set("forestIslandCoinCount",coins.toLocaleString());set("forestTotalTrees",Math.max(1,plants.length));set("forestIslandTreeCount",Math.max(1,plants.length));set("forestChartEmpty",daily?"Today's walking progress":"Your daily steps will appear here");
+ }
+ syncForestOverview();document.querySelectorAll(".forest-app-tab").forEach(b=>b.addEventListener("click",()=>setTimeout(syncForestOverview,100)));
 })();
 </script>
 
