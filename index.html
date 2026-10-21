@@ -745,6 +745,7 @@ document.addEventListener("click",e=>{const b=e.target.closest("#plantSeed");if(
 renderForestWallet();renderGarden();renderForestShop();
 
 
+window.navixAvatarAPI={getLook:()=>avatarLook,setLook:(key,value)=>{avatarLook[key]=value;localStorage.setItem("navix-avatar-look",JSON.stringify(avatarLook));setAvatar(avatarEmoji);},render:()=>{avatarPreview.innerHTML=avatarMarkup(avatarEmoji);}};
 })();
 
 /* Prototype flow uses the existing NAVIX route controls and map. */
@@ -860,9 +861,11 @@ const navixLookOptions={
 };
 const navixHairColors=[["#5a382f",""],["#221c2d",""],["#c77b42",""],["#f0c477",""],["#d96e9f",""],["#8066d9",""],["#74b9e7",""],["#e9a0bd",""]];
 function renderLookOptions(){
+ const api=window.navixAvatarAPI;if(!api)return;
+ const look=api.getLook();
  const panel=document.getElementById("lookPanel");if(!panel)return;
  const active=document.querySelector(".look-tab.active")?.dataset.lookTab||"hair";panel.replaceChildren();
- const addOption=(key,label,icon,colorMode=false)=>{const btn=document.createElement("button");btn.type="button";btn.className="look-option"+(avatarLook[key]===label?" selected":"");if(colorMode){btn.className="look-option look-swatch"+(avatarLook[key]===label?" selected":"");btn.style.background=label;btn.setAttribute("aria-label",key+" color");btn.title=key+" color";}else{btn.innerHTML='<span class="look-icon">'+icon+'</span>'+label;}btn.addEventListener("click",()=>{avatarLook[key]=label;localStorage.setItem("navix-avatar-look",JSON.stringify(avatarLook));if(key==="hairColor"||key==="outfitColor"){}renderLookOptions();setAvatar(avatarEmoji);});panel.append(btn);};
+ const addOption=(key,label,icon,colorMode=false)=>{const btn=document.createElement("button");btn.type="button";btn.className="look-option"+(look[key]===label?" selected":"");if(colorMode){btn.className="look-option look-swatch"+(look[key]===label?" selected":"");btn.style.background=label;btn.setAttribute("aria-label",key+" color");btn.title=key+" color";}else{btn.innerHTML='<span class="look-icon">'+icon+'</span>'+label;}btn.addEventListener("click",()=>{api.setLook(key,label);renderLookOptions();});panel.append(btn);};
  if(active==="hair"){
   navixLookOptions.hair.forEach(o=>addOption("hair",o[0],o[2]));
   const label=document.createElement("span");label.className="look-summary";label.textContent="Hair colour";panel.append(label);
