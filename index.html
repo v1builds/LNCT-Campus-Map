@@ -370,6 +370,16 @@ body.guest-mode .footer{color:#a095b3}
 @media(prefers-reduced-motion:reduce){.forest-main-tree,.forest-buddy,.forest-cloud{animation:none!important}}
 
 
+/* Always-visible tree collection inside Your Forest */
+.forest-inline-shop{margin-top:18px;padding:15px;border:1px solid #e5e8f5;border-radius:20px;background:linear-gradient(160deg,#fffdf7,#f4f5ff)}
+.forest-inline-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}
+.forest-inline-heading strong{display:block;font-size:15px;color:#2e3d70}
+.forest-inline-heading span{display:block;font-size:11px;color:#7c86a4;margin-top:3px}
+.forest-inline-heading .forest-inline-hint{white-space:nowrap;border-radius:99px;background:#e9e8ff;padding:6px 8px;color:#6258b7;font-weight:800}
+#forestInlineShopGrid .forest-shop-art{height:78px}
+#forestInlineShopGrid .forest-shop-card{padding:9px}
+#forestInlineShopGrid .forest-shop-card p{min-height:26px}
+@media(min-width:700px){#forestInlineShopGrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 /* NAVIX FOREST SHOP — unlockable tree species + walk-earned coins */
 .forest-wallet{display:inline-flex;align-items:center;gap:6px;background:#ffdf8a;color:#674b42;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:900;white-space:nowrap}
 .forest-topline{flex-wrap:wrap}
@@ -527,6 +537,7 @@ body.guest-mode .footer{color:#a095b3}
  <div class="forest-growth"><div><strong id="treeLabel">A new beginning</strong><span id="forestStage">Your first sprout is waiting</span></div><span class="forest-level" id="forestLevel">LV. 1</span></div><div class="progress"><div id="treeProgress"></div></div><div class="forest-progress-caption"><span>Next growth</span><span>50 points per stage</span></div>
  <div class="forest-actions"><button class="secondary forest-walk-btn" id="completeWalk">👣 Log this walk</button><button class="secondary forest-seed-btn" id="plantSeed">🪴 Visit plant shop</button></div>
  <div class="garden-collection"><div class="collection-heading"><div><strong>Little garden</strong><span>Collect something lovely</span></div><span class="collection-count" id="gardenCount">0 planted</span></div><div class="garden-items" id="gardenItems"><div class="garden-empty">Your garden is waiting for its first little plant 🌷</div></div></div>
+ <section class="forest-inline-shop" aria-labelledby="forestInlineTitle"><div class="forest-inline-heading"><div><strong id="forestInlineTitle">🌱 Grow your collection</strong><span>Unlock tree friends with walking coins</span></div><span class="forest-inline-hint">8 tree friends</span></div><div class="forest-shop-grid" id="forestInlineShopGrid"></div><p class="forest-shop-note">Log a walk to earn demo coins, then unlock and collect new trees. Your collection stays saved in this browser.</p></section>
  <p class="forest-footnote">Demo progress is saved on this device. Walk points are illustrative, not verified GPS activity.</p>
 </section>
 <section class="card panel memory-world" id="memoryPanel">
@@ -645,7 +656,7 @@ const forestSpecies=[
 function forestOwned(){try{return JSON.parse(localStorage.getItem("navix-garden-plants")||"[]")}catch{return[]}}
 function saveForestOwned(items){localStorage.setItem("navix-garden-plants",JSON.stringify(items));}
 function renderForestWallet(){const w=document.getElementById("forestWallet"),s=document.getElementById("forestShopCoins");if(w)w.textContent=forestCoins;if(s)s.textContent=forestCoins;}
-function renderForestShop(){const grid=document.getElementById("forestShopGrid");if(!grid)return;const items=forestOwned();grid.replaceChildren();forestSpecies.forEach(sp=>{const isOwned=items.some(p=>p.id===sp.id)||sp.price===0&&items.some(p=>p.name===sp.name);const card=document.createElement("article");card.className="forest-shop-card";const art=document.createElement("div");art.className="forest-shop-art";art.textContent=sp.emoji;const name=document.createElement("strong");name.textContent=sp.name;const desc=document.createElement("p");desc.textContent=sp.desc;const btn=document.createElement("button");btn.className="forest-shop-buy"+(isOwned?" owned":"");btn.textContent=isOwned?"✓ In your forest":sp.price+" 🪙";btn.disabled=isOwned||forestCoins<sp.price;btn.addEventListener("click",()=>{if(isOwned||forestCoins<sp.price)return;forestCoins-=sp.price;localStorage.setItem("navix-forest-coins",forestCoins);items.push({id:sp.id,emoji:sp.emoji,name:sp.name});saveForestOwned(items);renderForestWallet();renderGarden();renderForestShop();const stage=document.getElementById("forestStage");if(stage)stage.textContent=sp.name+" unlocked and planted! Your forest is growing ✨";});card.append(art,name,desc,btn);grid.append(card);});renderForestWallet();}
+function renderForestShop(){const grids=[...document.querySelectorAll("#forestShopGrid, #forestInlineShopGrid")];if(!grids.length)return;const items=forestOwned();grids.forEach(grid=>{grid.replaceChildren();forestSpecies.forEach(sp=>{const isOwned=items.some(p=>p.id===sp.id)||sp.price===0&&items.some(p=>p.name===sp.name);const card=document.createElement("article");card.className="forest-shop-card";const art=document.createElement("div");art.className="forest-shop-art";art.textContent=sp.emoji;const name=document.createElement("strong");name.textContent=sp.name;const desc=document.createElement("p");desc.textContent=sp.desc;const btn=document.createElement("button");btn.className="forest-shop-buy"+(isOwned?" owned":"");btn.textContent=isOwned?"✓ In your forest":sp.price+" 🪙";btn.disabled=isOwned||forestCoins<sp.price;btn.addEventListener("click",()=>{if(isOwned||forestCoins<sp.price)return;forestCoins-=sp.price;localStorage.setItem("navix-forest-coins",forestCoins);items.push({id:sp.id,emoji:sp.emoji,name:sp.name});saveForestOwned(items);renderForestWallet();renderGarden();renderForestShop();const stage=document.getElementById("forestStage");if(stage)stage.textContent=sp.name+" unlocked and planted! Your forest is growing ✨";});card.append(art,name,desc,btn);grid.append(card);});});renderForestWallet();}
 function openForestShop(){renderForestShop();document.getElementById("forestShop")?.classList.add("open");}
 document.getElementById("forestShopClose")?.addEventListener("click",()=>document.getElementById("forestShop")?.classList.remove("open"));
 document.getElementById("forestShop")?.addEventListener("click",e=>{if(e.target.id==="forestShop")e.currentTarget.classList.remove("open")});
