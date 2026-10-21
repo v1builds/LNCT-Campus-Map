@@ -422,7 +422,7 @@ body.guest-mode .footer{color:#a095b3}
 
 <div id="navixJourney" class="active" role="dialog" aria-modal="true" aria-label="NAVIX campus navigation"><div class="nj-shell">
 <header class="nj-top"><div class="nj-brand"><span class="nj-mark">⌖</span>NAVIX</div><span class="nj-step" id="njStep">CAMPUS NAVIGATION</span></header>
-<section class="nj-screen active nj-center" data-screen="1"><div class="nj-art" id="njSplashArt"><div class="mapstage" id="njSplashMapSlot"></div></div><h1 class="nj-title">NAVIX</h1><p class="nj-sub">Campus navigation, made simple.</p><div class="nj-loading"><span></span></div><button class="nj-btn" id="njBegin">Continue</button></section>
+<section class="nj-screen active nj-center nj-welcome-splash" data-screen="1"><div class="nj-splash-orbit orbit-a">✦</div><div class="nj-splash-orbit orbit-b">✧</div><div class="nj-splash-heading"><div class="nj-splash-brand"><span>⌖</span>NAVIX</div><div class="nj-eyebrow">YOUR CAMPUS, YOUR LITTLE WORLD</div><h1 class="nj-title">Every corner has a <span>story.</span></h1><p class="nj-sub">Find your way around LNCT, collect little moments, and make campus feel like your own world.</p></div><div class="nj-art" id="njSplashArt"><div class="mapstage" id="njSplashMapSlot"></div></div><div class="nj-splash-actions"><button class="nj-btn" id="njSignup">Create your account <span>↗</span></button><button class="nj-btn nj-login-action" id="njLogin">Log in</button><button class="nj-btn secondary nj-guest-action" id="njGuest">Continue without an account <span>→</span></button></div><div class="nj-splash-foot"><span>🌿 Made for LNCT explorers</span><span>Campus map · Memories · Little rewards</span></div></section>
 <section class="nj-screen" data-screen="2"><div class="nj-welcome"><div class="nj-welcome-art"><div class="nj-art" id="njWelcomeArt"></div></div><div class="nj-welcome-copy"><div class="nj-eyebrow">WELCOME TO NAVIX</div><h1 class="nj-title">Find your way around <span>LNCT.</span></h1><p class="nj-sub">Search campus buildings, plan a walking route, and keep your campus memories in one place.</p><div class="nj-actions" style="justify-content:flex-start"><button class="nj-btn" id="njLogin">Log in</button><button class="nj-btn secondary" id="njSignup">Sign up</button></div><button class="nj-btn secondary" id="njGuest" style="margin-top:14px">Continue without sign in</button></div></div><div class="nj-feature-row"><div class="nj-feature"><b>⌖</b>Interactive Campus Map</div><div class="nj-feature"><b>🚶</b>Avatar Navigation</div><div class="nj-feature"><b>🌳</b>Memory Tree</div><div class="nj-feature"><b>🪙</b>Coins & Rewards</div><div class="nj-feature"><b>♡</b>Connected Community</div></div></section>
 <section class="nj-screen" data-screen="4"><div class="nj-route-screen"><div class="nj-eyebrow">ROUTE PLANNER</div><h1 class="nj-title">Where are you going?</h1><div id="njRouteSlot"></div><div class="nj-actions"><button class="nj-btn" id="njStartNavigation">Start Navigation</button></div></div></section>
 <section class="nj-screen" data-screen="5"><div class="nj-route-screen"><div class="nj-eyebrow">NAVIGATION</div><h1 class="nj-title">Follow your route</h1><div class="nj-nav-summary"><div><small>NEXT INSTRUCTION</small><strong id="njInstruction">Follow the highlighted campus path.</strong></div><div class="nj-nav-stats"><span>Remaining steps<b id="njRemainingSteps">—</b></span><span>Walk time<b id="njRemainingTime">—</b></span></div></div><div class="nj-map-slot" id="njMapSlot"></div><div class="nj-actions"><button class="nj-btn secondary" id="njBackToRoute">Edit route</button><button class="nj-btn" id="njArrive">I've arrived</button></div></div></section>
@@ -861,3 +861,74 @@ button:active{transform:scale(.98)}
 @media(prefers-reduced-motion:reduce){button{transition:none!important}}
 
 </style>
+
+<style id="navix-submission-polish">
+#navixJourney{background:#f7f5ff;background-image:radial-gradient(ellipse at 8% 0%,#fff0d9 0,transparent 35%),radial-gradient(ellipse at 95% 28%,#e5dfff 0,transparent 32%),linear-gradient(150deg,#f9f5ff,#eff9f4)}
+.nj-shell{position:relative;overflow:hidden;background:transparent}
+.nj-top{background:#fffdfbeF;border-bottom:1px solid #e9e4f6;backdrop-filter:blur(16px)}
+.nj-brand{color:#34328e}.nj-mark{background:linear-gradient(145deg,#ffdfa0,#ffb6d8);color:#4c43b8;box-shadow:0 4px 0 #ead9fb}
+.nj-welcome-splash{position:relative;min-height:calc(100dvh - 72px);justify-content:center;align-items:center;gap:0;padding:clamp(20px,4vh,40px) clamp(16px,5vw,70px) 24px;overflow:hidden}
+.nj-splash-heading{position:relative;z-index:2;width:min(780px,100%);text-align:center}
+.nj-splash-brand{display:none}
+.nj-splash-heading .nj-eyebrow{display:inline-flex;background:#fffdf7;border:1px solid #eee4ff;border-radius:99px;padding:8px 13px;color:#7760cc;font-size:10px;letter-spacing:.15em;font-weight:900}
+.nj-splash-heading .nj-title{font-size:clamp(35px,5vw,60px);margin:15px 0 10px;color:#30317f}
+.nj-splash-heading .nj-title span{background:linear-gradient(100deg,#6c5ce7,#df7bb2);color:transparent;background-clip:text}
+.nj-splash-heading .nj-sub{font-size:clamp(13px,1.5vw,16px);max-width:520px;margin:0 auto 19px}
+.nj-welcome-splash .nj-art{width:min(900px,100%);height:clamp(170px,29vh,290px);margin:0 auto 20px;border:5px solid #ffffffc9;border-radius:28px;background:#bfe8da;box-shadow:0 16px 40px #4c45871b,0 0 0 1px #e4def7;transform:rotate(-.35deg)}
+.nj-welcome-splash .nj-art .mapstage{height:100%;border-radius:23px}
+.nj-welcome-splash .nj-art .mapstage svg{height:100%;min-height:0;object-fit:cover}
+.nj-splash-actions{display:grid;grid-template-columns:1.1fr .8fr 1.3fr;gap:10px;width:min(680px,100%);margin:0 auto;position:relative;z-index:2}
+.nj-splash-actions .nj-btn{min-height:49px;padding:13px 15px;border-radius:15px;background:linear-gradient(110deg,#6558e5,#8870ed);box-shadow:0 5px 0 #d9d1fa,0 9px 18px #6558e526;font-size:13px;font-weight:850}
+.nj-splash-actions .nj-login-action{background:#fffdfd;color:#4d49b5;border:1px solid #e4def8;box-shadow:0 5px 0 #e7e0f6}
+.nj-splash-actions .nj-guest-action{background:#eaf7ed;color:#3f7755;border:1px solid #d9eddf;box-shadow:0 5px 0 #d4e9d9}
+.nj-splash-foot{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:20px;color:#8a83a9;font-size:10px}
+.nj-splash-orbit{position:absolute;z-index:1;pointer-events:none;color:#ffb9d9;font-size:28px;animation:njSparkle 3s ease-in-out infinite alternate}
+.nj-splash-orbit.orbit-a{top:13%;left:12%}.nj-splash-orbit.orbit-b{top:24%;right:12%;color:#9c91ee;animation-delay:-1.3s}
+@keyframes njSparkle{from{transform:translateY(0) rotate(-12deg) scale(.9);opacity:.55}to{transform:translateY(-8px) rotate(12deg) scale(1.1);opacity:1}}
+/* Keep the signed-in home focused on the illustrated campus road, one search entry, and four feature tabs. */
+body.guest-mode .hero{display:none}
+body.personal-mode .hero{display:none}
+body.guest-mode main,body.personal-mode main{padding-top:12px}
+body.guest-mode .guest-search,body.personal-mode .guest-search{margin:0 auto 12px;max-width:820px;border:1px solid #e8e1f6;border-radius:18px;box-shadow:0 7px 22px #5346a10b;background:#fffdfd}
+body.guest-mode .guest-search .search-open-btn,body.personal-mode .guest-search .search-open-btn{min-height:61px}
+body.guest-mode .layout,body.personal-mode .layout{grid-template-columns:minmax(0,1fr)!important;gap:12px}
+body.guest-mode .layout>article,body.personal-mode .layout>article{width:100%}
+body.guest-mode .layout>.side>.card:first-child,body.personal-mode .layout>.side>.card:first-child{display:none}
+body.guest-mode:not(.search-open) .search-workspace,body.personal-mode .search-workspace{display:none!important}
+body.guest-mode .maphead,body.personal-mode .maphead{padding:13px 16px}
+body.guest-mode .mapstage,body.personal-mode .mapstage{min-height:0;border-radius:0 0 18px 18px}
+body.guest-mode .mapstage svg,body.personal-mode .mapstage svg{width:100%;height:auto;min-height:0;display:block}
+body.guest-mode .mapnote,body.personal-mode .mapnote{font-size:10px}
+body.guest-mode .mapfoot,body.personal-mode .mapfoot{padding:9px 14px}
+.navix-bottom{grid-template-columns:repeat(4,minmax(0,1fr))!important;max-width:780px;left:50%;right:auto;transform:translateX(-50%);width:100%;padding:9px 10px calc(9px + env(safe-area-inset-bottom));border:1px solid #e7e1f4;border-bottom:0;border-radius:22px 22px 0 0;background:#fffdf9f2;box-shadow:0 -8px 28px #52488b15}
+.navix-bottom button{font-size:10px;gap:5px;padding:8px 2px}
+.navix-bottom button span:first-child{font-size:22px}
+.navix-bottom button.active{background:linear-gradient(145deg,#f0edff,#fff0f7);color:#594dc5}
+@media(max-width:650px){
+ .nj-top{height:58px;padding:0 17px}.nj-step{font-size:9px}
+ .nj-welcome-splash{min-height:calc(100dvh - 58px);padding:20px 14px 25px;justify-content:center}
+ .nj-splash-heading .nj-title{font-size:38px;max-width:12ch;margin:13px auto 9px}
+ .nj-splash-heading .nj-sub{font-size:13px;line-height:1.55;max-width:34ch;margin-bottom:17px}
+ .nj-splash-heading .nj-eyebrow{font-size:9px}
+ .nj-welcome-splash .nj-art{height:clamp(155px,24vh,220px);border-width:4px;border-radius:23px;margin-bottom:17px}
+ .nj-welcome-splash .nj-art .mapstage{border-radius:19px}
+ .nj-splash-actions{grid-template-columns:1fr 1fr;gap:9px;width:100%}
+ .nj-splash-actions .nj-btn{min-height:47px;padding:12px 8px;font-size:12px;border-radius:14px}
+ .nj-splash-actions .nj-guest-action{grid-column:1/-1}
+ .nj-splash-foot{font-size:9px;gap:6px 13px;margin-top:17px}
+ .nj-splash-orbit.orbit-a{top:10%;left:8%}.nj-splash-orbit.orbit-b{top:22%;right:7%}
+ main{padding-bottom:calc(100px + env(safe-area-inset-bottom))!important}
+ .navix-bottom{width:100%;border-radius:20px 20px 0 0;left:0;transform:none;max-width:none}
+}
+@media(prefers-reduced-motion:reduce){.nj-splash-orbit{animation:none!important}}
+</style>
+<script id="navix-final-flow-fix">
+/* Submission flow: one welcome screen -> account/avatar -> campus home, or guest -> campus home. */
+document.getElementById("njBegin")?.remove();
+document.getElementById("njLogin")?.addEventListener("click",()=>{document.getElementById("navixJourney").classList.remove("active");document.body.dataset.njLoginFlow="true";document.getElementById("loginBtn").click();});
+document.getElementById("njSignup")?.addEventListener("click",()=>{document.getElementById("navixJourney").classList.remove("active");document.body.dataset.njLoginFlow="true";document.getElementById("loginBtn").click();});
+document.getElementById("njGuest")?.addEventListener("click",()=>{document.getElementById("navixJourney").classList.remove("active");if(typeof enterGuest==="function")enterGuest();document.body.classList.remove("search-open");if(typeof setNavTab==="function")setNavTab("home");window.scrollTo({top:0,behavior:"instant"});});
+document.getElementById("createAvatar")?.addEventListener("click",()=>{if(document.body.dataset.njLoginFlow==="true"){delete document.body.dataset.njLoginFlow;setTimeout(()=>{document.getElementById("navixJourney").classList.remove("active");if(typeof setNavTab==="function")setNavTab("home");window.scrollTo({top:0,behavior:"instant"});},80);}});
+document.getElementById("backGuest")?.addEventListener("click",()=>{document.getElementById("avatarModal").classList.remove("show");document.getElementById("navixJourney").classList.add("active");});
+/* Login and signup are intentionally represented as a local prototype avatar setup, not a real account backend. */
+</script>
