@@ -932,3 +932,9 @@ document.getElementById("createAvatar")?.addEventListener("click",()=>{if(docume
 document.getElementById("backGuest")?.addEventListener("click",()=>{document.getElementById("avatarModal").classList.remove("show");document.getElementById("navixJourney").classList.add("active");});
 /* Login and signup are intentionally represented as a local prototype avatar setup, not a real account backend. */
 </script>
+<script id="navix-flow-restore-fix">
+/* Restore the shared search and map after legacy prototype click handlers run. */
+window.njOpenRoute=function(){};
+document.getElementById("njGuest")?.addEventListener("click",()=>{setTimeout(()=>{if(typeof njEnterApp==="function")njEnterApp();if(typeof setNavTab==="function")setNavTab("home");},0);});
+document.getElementById("createAvatar")?.addEventListener("click",()=>{if(document.body.dataset.njLoginFlow==="true"||document.body.classList.contains("personal-mode"))setTimeout(()=>{if(typeof njEnterApp==="function")njEnterApp();if(typeof setNavTab==="function")setNavTab("home");},120);});
+</script>
