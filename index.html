@@ -644,19 +644,19 @@ document.querySelectorAll(".navix-bottom [data-nav]").forEach(b=>b.addEventListe
 /* Forest collection shop: walking earns coins; coins unlock permanent tree species. */
 let forestCoins=Number(localStorage.getItem("navix-forest-coins")||"40");
 const forestSpecies=[
- {id:"oak",emoji:"🌳",name:"Little Oak",price:0,desc:"Your first forest friend"},
- {id:"blossom",emoji:"🌸",name:"Blossom Tree",price:0,desc:"A tiny bit of spring"},
- {id:"pine",emoji:"🌲",name:"Pine Buddy",price:0,desc:"Tall and evergreen"},
- {id:"maple",emoji:"🍁",name:"Golden Maple",price:35,desc:"Golden autumn leaves"},
- {id:"sakura",emoji:"🌸",name:"Sakura Dream",price:55,desc:"A shower of pink petals"},
- {id:"willow",emoji:"🌿",name:"Willow Wish",price:75,desc:"Soft, flowing branches"},
- {id:"moon",emoji:"🌙",name:"Moonlight Tree",price:100,desc:"A little moonlit magic"},
- {id:"rainbow",emoji:"🌈",name:"Rainbow Bloom",price:140,desc:"A rare colourful friend"}
+ {id:"sakura",emoji:"🌸",name:"Sakura / Cherry Blossom",price:55,desc:"A dreamy shower of pink petals",image:"assets/trees/sakura.svg"},
+ {id:"willow",emoji:"🌿",name:"Magical Willow",price:75,desc:"Flowing leaves and peaceful energy",image:"assets/trees/willow.svg"},
+ {id:"maple",emoji:"🍂",name:"Golden Autumn Tree",price:35,desc:"A warm little burst of autumn",image:"assets/trees/autumn.svg"},
+ {id:"moon",emoji:"💙",name:"Enchanted Blue Tree",price:100,desc:"A glowing tree full of wonder",image:"assets/trees/blue.svg"},
+ {id:"blossom",emoji:"🌺",name:"Pink Blossom Tree",price:0,desc:"Soft blossoms for a happy forest",image:"assets/trees/pink-blossom.svg"},
+ {id:"oak",emoji:"🌳",name:"Giant Banyan Tree",price:0,desc:"A wise tree with sprawling roots",image:"assets/trees/banyan.svg"},
+ {id:"rainbow",emoji:"✨",name:"Glowing Fantasy Tree",price:140,desc:"A magical glow beneath the stars",image:"assets/trees/fantasy.svg"},
+ {id:"pine",emoji:"🌲",name:"Little Pine Tree",price:0,desc:"A tiny evergreen forest friend",image:"assets/trees/pine.svg"}
 ];
 function forestOwned(){try{return JSON.parse(localStorage.getItem("navix-garden-plants")||"[]")}catch{return[]}}
 function saveForestOwned(items){localStorage.setItem("navix-garden-plants",JSON.stringify(items));}
 function renderForestWallet(){const w=document.getElementById("forestWallet"),s=document.getElementById("forestShopCoins");if(w)w.textContent=forestCoins;if(s)s.textContent=forestCoins;}
-function renderForestShop(){const grids=[...document.querySelectorAll("#forestShopGrid, #forestInlineShopGrid")];if(!grids.length)return;const items=forestOwned();grids.forEach(grid=>{grid.replaceChildren();forestSpecies.forEach(sp=>{const isOwned=items.some(p=>p.id===sp.id)||sp.price===0&&items.some(p=>p.name===sp.name);const card=document.createElement("article");card.className="forest-shop-card";const art=document.createElement("div");art.className="forest-shop-art";art.textContent=sp.emoji;const name=document.createElement("strong");name.textContent=sp.name;const desc=document.createElement("p");desc.textContent=sp.desc;const btn=document.createElement("button");btn.className="forest-shop-buy"+(isOwned?" owned":"");btn.textContent=isOwned?"✓ In your forest":sp.price+" 🪙";btn.disabled=isOwned||forestCoins<sp.price;btn.addEventListener("click",()=>{if(isOwned||forestCoins<sp.price)return;forestCoins-=sp.price;localStorage.setItem("navix-forest-coins",forestCoins);items.push({id:sp.id,emoji:sp.emoji,name:sp.name});saveForestOwned(items);renderForestWallet();renderGarden();renderForestShop();const stage=document.getElementById("forestStage");if(stage)stage.textContent=sp.name+" unlocked and planted! Your forest is growing ✨";});card.append(art,name,desc,btn);grid.append(card);});});renderForestWallet();}
+function renderForestShop(){const grids=[...document.querySelectorAll("#forestShopGrid, #forestInlineShopGrid")];if(!grids.length)return;const items=forestOwned();grids.forEach(grid=>{grid.replaceChildren();forestSpecies.forEach(sp=>{const isOwned=items.some(p=>p.id===sp.id)||sp.price===0&&items.some(p=>p.name===sp.name);const card=document.createElement("article");card.className="forest-shop-card";const art=document.createElement("div");art.className="forest-shop-art";const img=document.createElement("img");img.src=sp.image;img.alt=sp.name;img.loading="lazy";img.decoding="async";img.onerror=()=>{img.remove();art.textContent=sp.emoji;};art.append(img);const name=document.createElement("strong");name.textContent=sp.name;const desc=document.createElement("p");desc.textContent=sp.desc;const btn=document.createElement("button");btn.className="forest-shop-buy"+(isOwned?" owned":"");btn.textContent=isOwned?"✓ In your forest":sp.price+" 🪙";btn.disabled=isOwned||forestCoins<sp.price;btn.addEventListener("click",()=>{if(isOwned||forestCoins<sp.price)return;forestCoins-=sp.price;localStorage.setItem("navix-forest-coins",forestCoins);items.push({id:sp.id,emoji:sp.emoji,name:sp.name});saveForestOwned(items);renderForestWallet();renderGarden();renderForestShop();const stage=document.getElementById("forestStage");if(stage)stage.textContent=sp.name+" unlocked and planted! Your forest is growing ✨";});card.append(art,name,desc,btn);grid.append(card);});});renderForestWallet();}
 function openForestShop(){renderForestShop();document.getElementById("forestShop")?.classList.add("open");}
 document.getElementById("forestShopClose")?.addEventListener("click",()=>document.getElementById("forestShop")?.classList.remove("open"));
 document.getElementById("forestShop")?.addEventListener("click",e=>{if(e.target.id==="forestShop")e.currentTarget.classList.remove("open")});
@@ -668,3 +668,4 @@ renderForestWallet();renderGarden();renderForestShop();
 
 })();
 </script></body></html>
+<style>.forest-shop-art{background:radial-gradient(ellipse at 50% 85%,#d5eedb,#eff9ed 48%,#f8f6ff);padding:4px}.forest-shop-art img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 5px 4px #253e3820);transition:transform .25s ease,filter .25s ease}.forest-shop-card:hover .forest-shop-art img{transform:translateY(-3px) scale(1.045);filter:drop-shadow(0 8px 7px #253e3830)}.forest-shop-card{box-shadow:0 5px 16px #34465c0a;transition:transform .2s ease,box-shadow .2s ease}.forest-shop-card:active{transform:scale(.985)}@media(prefers-reduced-motion:reduce){.forest-shop-art img,.forest-shop-card{transition:none!important}}</style>
