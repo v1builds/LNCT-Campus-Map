@@ -669,3 +669,39 @@ renderForestWallet();renderGarden();renderForestShop();
 })();
 </script></body></html>
 <style>.forest-shop-art{background:radial-gradient(ellipse at 50% 85%,#d5eedb,#eff9ed 48%,#f8f6ff);padding:4px}.forest-shop-art img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 5px 4px #253e3820);transition:transform .25s ease,filter .25s ease}.forest-shop-card:hover .forest-shop-art img{transform:translateY(-3px) scale(1.045);filter:drop-shadow(0 8px 7px #253e3830)}.forest-shop-card{box-shadow:0 5px 16px #34465c0a;transition:transform .2s ease,box-shadow .2s ease}.forest-shop-card:active{transform:scale(.985)}@media(prefers-reduced-motion:reduce){.forest-shop-art img,.forest-shop-card{transition:none!important}}</style>
+
+<style id="navix-prototype-visual-refresh">
+
+/* NAVIX visual direction inspired by the supplied product prototype */
+:root{--navy:#292c87;--blue:#5149d5;--ink:#25275f;--muted:#77769a;--line:#e7e4f2;--bg:#fbf8f5;--green:#67a96b}
+body{background:#fbf8f5;color:#292b73}
+header{height:auto;min-height:76px;background:#fffdfa;color:#292b83;border-bottom:1px solid #efebf4;box-shadow:0 3px 16px #37317a08}
+.brand{font-size:clamp(24px,3vw,38px);letter-spacing:.04em;color:#3939b4}
+.brand span{background:transparent;color:#4a43c5;font-size:35px}
+.status{color:#7776a0}
+main{max-width:1440px;padding:clamp(16px,3vw,38px)}
+.hero{background:linear-gradient(115deg,#fffdfb 0%,#f4f2ff 58%,#f0f8ef 100%);border:1px solid #ebe7f6;border-radius:25px;padding:clamp(20px,3vw,36px);align-items:center;box-shadow:0 10px 30px #39328b08}
+.eyebrow{color:#6258ce}
+h1{color:#2d2e84}
+h1 span{color:#6156d2}
+.sub{color:#77749a}
+.card{border-color:#e8e4f3;border-radius:21px;box-shadow:0 8px 24px #39328b0a}
+.maphead{background:#fffdfb;border-color:#eeebf5}
+.tag{background:#efedff;color:#5148c7}
+.mapstage{background:#eef6e9}
+.maptools button{border-color:#e8e3f5;border-radius:13px;color:#4944ba;box-shadow:0 3px 10px #39328b0a}
+input,select,textarea{border-color:#e4dff2!important;border-radius:13px!important;background:#fffdfd}
+button{transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}
+button:active{transform:scale(.98)}
+.login-btn,.primary,.find-route,.route-button,.start-nav,.action-primary{background:#5149ce!important;color:#fff!important;border-radius:999px!important;box-shadow:0 5px 14px #5149ce24}
+.modes{background:#eeebfa;border-radius:999px}
+.mode{border-radius:999px}
+.mode.active{color:#39349d;box-shadow:0 3px 10px #3c318c12}
+.forest-world,.memory-world{background:linear-gradient(145deg,#fffefa,#f4f1ff 75%,#f1f8ed)}
+.forest-inline-shop{border-radius:22px}
+.forest-shop-card{border-color:#e9e3f6;border-radius:18px;background:#fffdfa}
+.forest-shop-art{height:118px;border-radius:15px;background:radial-gradient(ellipse at 50% 85%,#d8efd9,#f0f8ee 48%,#f8f4ff)}
+@media(max-width:700px){header{padding:12px 16px;min-height:64px}.status{display:none}.hero{border-radius:20px;padding:18px;margin-bottom:16px}.layout{grid-template-columns:minmax(0,1fr)!important;gap:14px}.mapstage svg{min-height:300px}.forest-shop-art{height:104px}}
+@media(prefers-reduced-motion:reduce){button{transition:none!important}}
+
+</style>
