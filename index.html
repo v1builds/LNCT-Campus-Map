@@ -826,22 +826,16 @@ body[data-nav-tab="lost"] .lostitem{background:linear-gradient(120deg,#fffdfb,#f
 @media(prefers-reduced-motion:reduce){.event-art>span{animation:none!important}}
 </style>
 <script id="navix-avatar-entry-fix">
-/* Make Login/Sign up reliably open the avatar creator from the splash screen. */
+/* Route welcome login/signup through the real avatar initializer so the illustrated buddy is rendered. */
 document.addEventListener("click",function(e){
  const btn=e.target.closest("#njLogin, #njSignup");
  if(!btn)return;
  e.preventDefault();e.stopImmediatePropagation();
  document.body.dataset.njLoginFlow="true";
  document.getElementById("navixJourney")?.classList.remove("active");
- const modal=document.getElementById("avatarModal");
- const name=document.getElementById("avatarName");
- if(name)name.value=localStorage.getItem("navix-avatar-name")||"";
- const avatar=localStorage.getItem("navix-avatar-emoji")||"🧑🏻‍🎓";
- document.querySelectorAll(".avatar-choice").forEach(b=>b.classList.toggle("chosen",b.dataset.avatar===avatar));
- const preview=document.getElementById("avatarPreview");if(preview)preview.textContent=avatar;
- modal?.classList.add("show");
+ document.getElementById("loginBtn")?.click();
 },true);
-</script>
+
 <style id="navix-custom-buddy-fix">.avatar-preview{display:grid;place-items:center}.navix-buddy-art{display:block;width:100%;height:100%;overflow:visible}.avatar-preview .navix-buddy-art{width:110px;height:124px;filter:drop-shadow(0 8px 6px #6252a52b);animation:buddy-bob 1.7s ease-in-out infinite alternate}.avatar-choice{display:grid;place-items:center;overflow:visible;padding:2px}.avatar-choice .navix-buddy-art{width:45px;height:49px}.navix-walking-buddy{filter:drop-shadow(0 2px 2px #26334a35)}.navix-walking-buddy path{animation:buddy-steps .38s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}@keyframes buddy-bob{to{transform:translateY(-5px) rotate(2deg)}}@keyframes buddy-steps{to{translate:0 -1px}}@media(prefers-reduced-motion:reduce){.avatar-preview .navix-buddy-art,.navix-walking-buddy path{animation:none!important}}</style></body></html>
 <style>.forest-shop-art{background:radial-gradient(ellipse at 50% 85%,#d5eedb,#eff9ed 48%,#f8f6ff);padding:4px}.forest-shop-art img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 5px 4px #253e3820);transition:transform .25s ease,filter .25s ease}.forest-shop-card:hover .forest-shop-art img{transform:translateY(-3px) scale(1.045);filter:drop-shadow(0 8px 7px #253e3830)}.forest-shop-card{box-shadow:0 5px 16px #34465c0a;transition:transform .2s ease,box-shadow .2s ease}.forest-shop-card:active{transform:scale(.985)}@media(prefers-reduced-motion:reduce){.forest-shop-art img,.forest-shop-card{transition:none!important}}</style>
 
