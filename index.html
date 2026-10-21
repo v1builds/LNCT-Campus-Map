@@ -1184,3 +1184,23 @@ window.njOpenRoute=function(){if(typeof njEnterApp==="function")njEnterApp();if(
 document.getElementById("njGuest")?.addEventListener("click",()=>{setTimeout(()=>{if(typeof njEnterApp==="function")njEnterApp();if(typeof setNavTab==="function")setNavTab("home");},0);});
 document.getElementById("createAvatar")?.addEventListener("click",()=>{if(document.body.dataset.njLoginFlow==="true"||document.body.classList.contains("personal-mode"))setTimeout(()=>{if(typeof njEnterApp==="function")njEnterApp();if(typeof setNavTab==="function")setNavTab("home");},120);});
 </script>
+<script id="navix-home-map-visibility-fix">
+(function(){
+ function restoreHomeMap(){
+  const journey=document.getElementById("navixJourney");
+  const layout=document.querySelector("main .layout");
+  const map=document.getElementById("campusMap");
+  const mapCard=map?.closest("article.card");
+  if(journey)journey.classList.remove("active");
+  if(mapCard&&layout&&mapCard.parentElement!==layout)layout.insertBefore(mapCard,layout.firstChild);
+  if(map){const stage=map.closest(".mapstage");if(stage&&!stage.contains(map))stage.appendChild(map);}
+  if(mapCard){mapCard.classList.remove("tab-hidden");mapCard.style.removeProperty("display");}
+  document.body.classList.remove("search-open");
+  if(typeof setNavTab==="function")setNavTab("home");
+  if(mapCard){mapCard.classList.remove("tab-hidden");mapCard.style.removeProperty("display");}
+ }
+ document.querySelectorAll('.navix-bottom [data-nav="home"]').forEach(btn=>btn.addEventListener("click",()=>setTimeout(restoreHomeMap,20)));
+ document.getElementById("njGuest")?.addEventListener("click",()=>setTimeout(restoreHomeMap,50));
+ document.getElementById("createAvatar")?.addEventListener("click",()=>setTimeout(restoreHomeMap,200));
+})();
+</script>
