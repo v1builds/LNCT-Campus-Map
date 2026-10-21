@@ -663,7 +663,7 @@ document.getElementById("forestShop")?.addEventListener("click",e=>{if(e.target.
 /* Capture the seed button so it opens the shop instead of planting a free placeholder. */
 document.addEventListener("click",e=>{const b=e.target.closest("#plantSeed");if(!b)return;e.preventDefault();e.stopImmediatePropagation();openForestShop();},true);
 /* Render the unlocked collection as a persistent set of tree species. */
-renderForestWallet();renderGarden();
+renderForestWallet();renderGarden();renderForestShop();
 
 
 })();
