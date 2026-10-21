@@ -442,15 +442,22 @@ body.guest-mode .footer{color:#a095b3}
 <section class="hero"><div class="hero-copy"><div class="eyebrow">LNCT CAMPUS NAVIGATION</div><h1>Find your way around <span>LNCT.</span></h1><p class="sub">Search campus buildings and plan a walking route.</p><div class="hero-stickers"><span>♡ campus map</span><span>✦ walking directions</span></div></div><div class="guest-mascot" aria-label="Original pink-haired anime campus buddy"><span class="mascot-spark spark-one">✦</span><span class="mascot-spark spark-two">✧</span><span class="mascot-heart">♡</span><svg viewBox="0 0 210 220" role="img" aria-label="Cute pink-haired anime girl campus mascot"><defs><linearGradient id="hairPink" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb9dd"/><stop offset="1" stop-color="#f16eae"/></linearGradient><linearGradient id="dressLilac" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a9a1ff"/><stop offset="1" stop-color="#776be7"/></linearGradient></defs><ellipse cx="105" cy="204" rx="54" ry="9" fill="#7c72bd" opacity=".15"/><path d="M56 102 Q37 56 65 31 Q101 0 140 29 Q171 48 153 111 L145 155 L62 153Z" fill="url(#hairPink)" stroke="#d85c9b" stroke-width="2"/><path d="M66 139 Q45 155 59 183 L81 190 L86 146Z M141 137 Q164 155 150 183 L128 190 L124 145Z" fill="#f58bc1"/><path d="M74 132 Q105 116 136 132 L151 180 Q105 201 59 180Z" fill="url(#dressLilac)" stroke="#655bd0" stroke-width="2"/><path d="M84 139 L105 154 L126 139" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/><path d="M91 151 L105 166 L119 151" fill="#ffcf73" stroke="#fff0c4" stroke-width="2"/><path d="M61 79 Q49 40 83 24 Q115 8 143 33 Q163 50 151 84 L145 119 Q135 139 105 140 Q74 137 63 115Z" fill="#ffe0d0" stroke="#e8a2b4" stroke-width="2"/><path d="M59 91 Q42 45 72 25 Q99 4 129 20 Q160 30 159 71 L148 62 Q138 42 117 39 Q95 61 65 61Z" fill="url(#hairPink)" stroke="#d85c9b" stroke-width="2"/><path d="M61 54 Q43 84 58 116 L70 130 L77 88Z M148 55 Q166 86 151 117 L139 130 L134 84Z" fill="url(#hairPink)" stroke="#d85c9b" stroke-width="2"/><path d="M70 58 Q89 76 107 54 Q126 73 147 56 L143 84 Q129 98 107 86 Q84 99 68 82Z" fill="url(#hairPink)"/><ellipse cx="88" cy="91" rx="9" ry="12" fill="#fff"/><ellipse cx="124" cy="91" rx="9" ry="12" fill="#fff"/><ellipse cx="90" cy="94" rx="5" ry="8" fill="#51436e"/><ellipse cx="122" cy="94" rx="5" ry="8" fill="#51436e"/><circle cx="92" cy="91" r="2.4" fill="#fff"/><circle cx="124" cy="91" r="2.4" fill="#fff"/><path d="M98 111 Q106 119 114 110" fill="none" stroke="#c96b86" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="76" cy="106" rx="8" ry="4" fill="#ff9cb7" opacity=".75"/><ellipse cx="136" cy="106" rx="8" ry="4" fill="#ff9cb7" opacity=".75"/><g transform="translate(66 51) rotate(-20)"><path d="M0 0 L9 4 L14 14 L4 11Z" fill="#34305f"/><path d="M5 2 L9 5 L11 10 L6 8Z" fill="#ffdf76"/></g><g transform="translate(137 50) rotate(18)"><path d="M0 0 L9 4 L14 14 L4 11Z" fill="#34305f"/><path d="M5 2 L9 5 L11 10 L6 8Z" fill="#ffdf76"/></g><path d="M72 178 L66 198 Q77 204 91 198 L88 180 M122 180 L119 198 Q133 204 145 198 L139 177" fill="#ffe0d0" stroke="#e8a2b4" stroke-width="2"/><path d="M62 197 Q76 190 91 198 L91 207 Q74 213 58 206Z M119 198 Q135 190 149 197 L153 206 Q136 213 118 207Z" fill="#fff" stroke="#d9d8f7" stroke-width="2"/></svg><div class="mascot-caption">hi, I'm Momo! <span>૮ ˶ᵔ ᵕ ᵔ˶ ა</span></div></div><div class="modes"><button class="mode active" id="normalMode">◈ Map mode</button><button class="mode" id="gameMode">✦ Game mode</button></div></section>
 
 <div class="guest-search" id="guestSearchBar"><button class="search-open-btn" id="openSearch" type="button"><span class="search-glyph">⌕</span><span><strong>Search your campus</strong><small>Find a building or plan a walking route</small></span></button><button class="search-hint" id="openSearchAlt" type="button" aria-label="Open route search">GO ↗</button></div>
-<section class="search-workspace" id="searchWorkspace" aria-label="Campus search and route planner">
- <div class="search-block search-point-block"><span class="search-step">01 · START HERE</span><h2>📍 Where are you now?</h2>
- <div class="field"><label for="start">STARTING POINT</label><div class="search-input-row"><span class="search-field-icon">◎</span><select id="start" aria-label="Starting point"><option value="__current_location__">◎ Use current location</option></select></div></div>
- <p class="search-card-note">Choose a campus spot, or use your device location.</p></div>
- <div class="search-block search-point-block destination-block"><span class="search-step">02 · YOUR NEXT STOP</span><h2>✨ Where to?</h2>
- <div class="field"><label for="end">DESTINATION</label><div class="search-input-row"><span class="search-field-icon">⌖</span><select id="end" aria-label="Destination"></select></div></div>
- <p class="search-card-note">Pick the building or place you want to reach.</p></div>
- <div class="search-route-action"><button class="primary" id="findRoute">Find my way →</button><p class="hint" id="locationMessage" aria-live="polite">Choose a starting point and destination.</p>
- <div class="search-metrics"><div><small>Walking time</small><strong id="searchDuration">—</strong></div><div><small>Steps</small><strong id="searchSteps">—</strong></div><div><small>Distance</small><strong id="searchDistance">—</strong></div></div><p class="routecopy" id="searchRouteCopy">Your walking route will appear here.</p></div>
+<section class="search-workspace sketch-search" id="searchWorkspace" aria-label="Campus search and route planner">
+ <div class="search-block sketch-route-block">
+  <div class="sketch-block-title"><span>⌖</span><div><h2>SEARCH &amp; ROUTE</h2><p>Find your way around campus</p></div></div>
+  <div class="field"><label for="start">STARTING POINT</label><div class="search-input-row"><span class="search-field-icon">◎</span><select id="start" aria-label="Starting point"><option value="__current_location__">Your location</option></select></div></div>
+  <div class="field"><label for="end">DESTINATION</label><div class="search-input-row"><span class="search-field-icon">⌖</span><select id="end" aria-label="Destination"></select></div></div>
+  <button class="primary sketch-go" id="findRoute">GO ↗</button>
+  <div class="search-metrics"><div><small>TIME</small><strong id="searchDuration">—</strong></div><div><small>STEPS</small><strong id="searchSteps">—</strong></div><div><small>DISTANCE</small><strong id="searchDistance">—</strong></div></div>
+  <p class="routecopy" id="searchRouteCopy">Your walking route will appear here.</p>
+ </div>
+ <div class="search-block sketch-location-block">
+  <div class="sketch-block-title"><span>⌖</span><div><h2>FIND A LOCATION</h2><p>Choose how you want to find a place</p></div></div>
+  <button type="button" class="location-choice" id="detectLocation"><span class="choice-icon">◎</span><span><strong>Detect your location</strong><small>Use your device location</small></span><span class="choice-arrow">›</span></button>
+  <button type="button" class="location-choice" id="manualCampusChoice"><span class="choice-icon">⌘</span><span><strong>Select manually from campus locations</strong><small>Pick a starting point from the campus list</small></span><span class="choice-arrow">›</span></button>
+  <div class="field sketch-location-search"><label for="searchLocationName">SEARCH BY LOCATION NAME</label><div class="search-input-row"><span class="search-field-icon">⌕</span><input id="searchLocationName" type="search" placeholder="e.g. Central Library" autocomplete="off" aria-label="Search by location name"></div><div id="locationSearchResults" class="location-search-results" hidden></div></div>
+  <p class="hint" id="locationMessage" aria-live="polite">Choose a way to find your campus location.</p>
+ </div>
 </section>
 <div class="profilebar"><div><strong>👋 Explore as a guest</strong><br><span id="profileHint">No sign-up needed · Demo preferences stay in this browser</span></div><select id="profileMode" aria-label="Choose demo profile"><option value="guest">Guest mode</option><option value="personal">Personalized demo</option></select></div><section class="layout"><article class="card"><div class="maphead"><div><strong id="mapTitle">LNCT campus map</strong><small id="mapSubtitle">Tap a building to choose it as your destination</small></div><span class="tag" id="modeTag">SCHEMATIC PREVIEW</span></div>
 <div class="mapstage"><svg id="campusMap" viewBox="0 0 820 650" role="img" aria-label="Fictional illustrative miniature campus map. Tap a building for details.">
@@ -681,8 +688,13 @@ updateProfile();updateTree();renderGarden();renderPhotos();renderLost();selectBu
 const searchWorkspace=$("searchWorkspace");
 function openSearch(){document.body.classList.add("search-open");searchWorkspace?.classList.add("open");searchWorkspace?.scrollIntoView({behavior:"smooth",block:"start"});}
 $("openSearch")?.addEventListener("click",openSearch);$("openSearchAlt")?.addEventListener("click",openSearch);
-function useCurrentLocation(){const msg=$("locationMessage");if(!navigator.geolocation){start.value="Main Gate";msg.textContent="Location access isn't available here, so Main Gate is selected as a demo starting point. You can change it anytime.";return;}msg.textContent="Asking permission for your current location…";navigator.geolocation.getCurrentPosition(()=>{start.value="Main Gate";msg.textContent="Device location permission received. This prototype uses illustrative campus points, so Main Gate is selected as the demo start—change it to the nearest spot if needed.";if(lastRoute)findRoute();},()=>{start.value="Main Gate";msg.textContent="Location permission wasn't available. Main Gate is selected for now; you can choose another campus spot.";},{timeout:7000});}
+function useCurrentLocation(){const msg=$("locationMessage");if(!navigator.geolocation){start.value="Main Gate";msg.textContent="Location detection isn't available. Main Gate is selected as a demo starting point; you can change it manually.";return;}msg.textContent="Requesting location permission…";navigator.geolocation.getCurrentPosition(()=>{start.value="Main Gate";msg.textContent="Location permission received. This is an illustrative campus map, so Main Gate is used as the demo start. Choose the nearest campus spot if needed.";if(lastRoute)findRoute();},()=>{start.value="Main Gate";msg.textContent="Location permission unavailable. Main Gate is selected for now; you can choose another campus spot.";},{timeout:7000});}
+$("detectLocation")?.addEventListener("click",useCurrentLocation);
+$("manualCampusChoice")?.addEventListener("click",()=>{start.focus();start.scrollIntoView({behavior:"smooth",block:"center"});$("locationMessage").textContent="Choose your starting point from the campus list in the first block.";});
 start.addEventListener("change",()=>{if(start.value==="__current_location__"){useCurrentLocation();return;}if(lastRoute)findRoute();});
+const locationSearch=$("searchLocationName"),locationResults=$("locationSearchResults");
+locationSearch?.addEventListener("input",()=>{const q=locationSearch.value.trim().toLowerCase();locationResults.replaceChildren();if(!q){locationResults.hidden=true;return;}const matches=names.filter(n=>n.toLowerCase().includes(q));matches.forEach(n=>{const b=document.createElement("button");b.type="button";b.textContent=n;b.addEventListener("click",()=>{end.value=n;locationSearch.value=n;locationResults.hidden=true;selectBuilding();$("locationMessage").textContent="Destination selected: "+n+". Press GO to see your route.";});locationResults.appendChild(b);});if(!matches.length){const b=document.createElement("button");b.type="button";b.textContent="No campus match — try another name";b.disabled=true;locationResults.appendChild(b);}locationResults.hidden=false;});
+
 const oldFindRoute=findRoute;
 findRoute=function(){oldFindRoute();if($("searchDuration")){$("searchDuration").textContent=$("duration").textContent;$("searchDistance").textContent=$("distance").textContent;const m=Number(String($("distance").textContent).replace(/[^0-9.]/g,""));$("searchSteps").textContent=String(Math.round(m/0.75));$("searchRouteCopy").textContent=$("routeCopy").textContent;}};
 /* Bottom navigation is a real five-tab app shell: every feature gets its own focused screen. */
@@ -991,19 +1003,35 @@ body.guest-mode .mapfoot,body.personal-mode .mapfoot{padding:9px 14px}
  .navix-bottom{width:100%;border-radius:20px 20px 0 0;left:0;transform:none;max-width:none}
 }
 @media(prefers-reduced-motion:reduce){.nj-splash-orbit{animation:none!important}}
-/* Search planner: two clear point cards and one route-result area */
-.search-workspace{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
-.search-workspace .search-point-block{padding:17px;border-radius:20px;background:linear-gradient(155deg,#fff 0%,#fff8fd 100%);border:1px solid #eadff7;box-shadow:0 10px 28px #6b559511}
-.search-step{display:inline-block;font-size:10px;letter-spacing:.09em;font-weight:900;color:#a16bb5;margin-bottom:8px}
-.search-point-block h2{font-size:16px;margin:0 0 13px;color:#34305f}
-.search-card-note{font-size:11px;color:#9487a7;line-height:1.45;margin:9px 1px 0}
-.search-route-action{grid-column:1/-1;border:1px solid #eadff7;border-radius:20px;background:#fff;padding:15px;box-shadow:0 8px 24px #6b55950b}
-.search-route-action .primary{width:100%;padding:13px;border-radius:14px;background:linear-gradient(110deg,#e66ba9,#9a79ee);color:white}
-.search-route-action .hint{margin:9px 0;color:#8b7e9e;font-size:11px}
-.search-route-action .routecopy{overflow-wrap:anywhere;font-size:12px}
-.search-point-block .search-input-row{min-height:54px}
-.search-point-block select{font-size:13px;min-width:0}
-@media(max-width:650px){.search-workspace{grid-template-columns:minmax(0,1fr);gap:10px}.search-route-action{grid-column:auto}.search-workspace .search-point-block{padding:15px}.search-route-action{padding:13px}.search-card-note{font-size:10px}}
+/* Match the user's original two-block Search sketch */
+.sketch-search{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:13px}
+.sketch-search .search-block{padding:17px;border-radius:20px;background:linear-gradient(155deg,#fff 0%,#fff8fd 100%);border:1px solid #eadff7;box-shadow:0 10px 28px #6b559511;min-width:0}
+.sketch-block-title{display:flex;align-items:center;gap:11px;margin-bottom:15px}
+.sketch-block-title>span{display:grid;place-items:center;flex:0 0 43px;height:43px;border-radius:15px;background:#f0eaff;color:#7762d7;font-size:25px}
+.sketch-block-title h2{font-size:15px;font-weight:900;letter-spacing:.035em;color:#34305f;margin:0}
+.sketch-block-title p{font-size:11px;color:#9487a7;margin:4px 0 0}
+.sketch-search .field{margin:11px 0}
+.sketch-search .search-input-row{min-height:50px;flex-wrap:nowrap}
+.sketch-search select,.sketch-search input{min-width:0;width:100%;font-size:12px}
+.sketch-search .sketch-go{width:100%;margin:12px 0 10px;padding:12px;border-radius:13px;background:linear-gradient(110deg,#e66ba9,#9a79ee);color:white;font-weight:900;letter-spacing:.08em}
+.sketch-search .search-metrics{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.sketch-search .search-metrics div{background:#f3efff;border:1px solid #e9e0ff;border-radius:12px;padding:10px 4px}
+.sketch-search .search-metrics small{font-size:9px;letter-spacing:.06em;font-weight:800}
+.sketch-search .search-metrics strong{font-size:14px}
+.sketch-search .routecopy{overflow-wrap:anywhere;font-size:11px;color:#74668c;margin:10px 0 0}
+.location-choice{width:100%;display:flex;align-items:center;gap:10px;text-align:left;padding:12px 10px;border:1px solid #eee5fa;border-radius:14px;background:#fff;margin:9px 0;color:#39345d}
+.location-choice .choice-icon{display:grid;place-items:center;flex:0 0 36px;height:36px;border-radius:12px;background:#f4efff;color:#7862d8;font-size:20px}
+.location-choice strong,.location-choice small{display:block}
+.location-choice strong{font-size:11px;line-height:1.35}
+.location-choice small{font-size:10px;color:#9589a8;margin-top:4px}
+.location-choice .choice-arrow{margin-left:auto;font-size:23px;color:#a28ac9}
+.location-choice:active{transform:scale(.99);background:#faf5ff}
+.sketch-location-search{margin-top:16px!important}
+.sketch-location-search .search-input-row{background:#fff;border-color:#e6dbf4}
+.location-search-results{margin-top:5px;border:1px solid #eee5fa;border-radius:12px;overflow:hidden;background:#fff}
+.location-search-results button{display:block;width:100%;padding:10px;text-align:left;background:#fff;color:#4c426a;border-bottom:1px solid #f0eaf7;font-size:12px}
+.sketch-search #locationMessage{font-size:10px;line-height:1.5;color:#887a9d;margin:10px 0 0}
+@media(max-width:650px){.sketch-search{grid-template-columns:minmax(0,1fr);gap:10px}.sketch-search .search-block{padding:15px}.sketch-block-title h2{font-size:14px}.sketch-search .search-metrics strong{font-size:13px}}
 </style>
 <script id="navix-final-flow-fix">
 /* Submission flow: one welcome screen -> account/avatar -> campus home, or guest -> campus home. */
