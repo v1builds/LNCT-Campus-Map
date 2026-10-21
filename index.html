@@ -247,8 +247,8 @@ body.guest-mode .current-location-btn{background:#f2e9fb;color:#78509a}
 .search-metrics div{background:#f2f1ff;border-radius:10px;padding:9px;text-align:center;min-width:0}
 .search-metrics small{display:block;color:#737da0;font-size:10px}
 .search-metrics strong{display:block;color:#514ec0;font-size:15px;overflow-wrap:anywhere}
-.navix-bottom{position:fixed;z-index:15;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;padding:8px 5px calc(8px + env(safe-area-inset-bottom));background:#ffffffed;backdrop-filter:blur(18px);border-top:1px solid #e4e6fa;box-shadow:0 -7px 24px #344a7810}
-.navix-bottom button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:transparent;color:#727d9e;border-radius:12px;padding:5px 2px;font-size:10px;font-weight:800;min-width:0}
+.navix-bottom{position:fixed;z-index:15;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;padding:7px 5px calc(7px + env(safe-area-inset-bottom));background:#ffffffed;backdrop-filter:blur(18px);border-top:1px solid #e4e6fa;box-shadow:0 -7px 24px #344a7810}
+.navix-bottom button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:transparent;color:#727d9e;border-radius:12px;padding:5px 1px;font-size:10px;font-weight:800;min-width:0;white-space:nowrap;overflow:hidden}
 .navix-bottom button span:first-child{font-size:21px;line-height:1.2}
 .navix-bottom button.active{background:#f0eeff;color:#5c51d2}
 main{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
@@ -264,7 +264,7 @@ body.guest-mode:not(.search-open) .layout>article{order:0}
 body.guest-mode .profilebar{display:none}
 body.personal-mode .guest-search{display:none}
 body.personal-mode .search-workspace{display:none}
-@media(max-width:650px){.search-workspace{grid-template-columns:1fr}.search-hint{display:none}.search-block{padding:13px}.navix-bottom button{font-size:9px}.navix-bottom button span:first-child{font-size:20px}main{padding-bottom:calc(92px + env(safe-area-inset-bottom))}}
+@media(max-width:650px){.search-workspace{grid-template-columns:1fr}.search-hint{display:none}.search-block{padding:13px}.navix-bottom{grid-template-columns:repeat(5,minmax(0,1fr));gap:0;padding-left:3px;padding-right:3px}.navix-bottom button{font-size:clamp(7px,2.05vw,9px);letter-spacing:-.02em;gap:3px;padding:6px 0;white-space:nowrap}.navix-bottom button span:first-child{font-size:19px}main{padding-bottom:calc(92px + env(safe-area-inset-bottom))}}
 
 
 /* ANIME DREAM GUEST WORLD — original chibi campus buddy + sakura daydream */
