@@ -571,7 +571,8 @@ body.guest-mode .footer{color:#a095b3}
 <section class="card panel"><div class="losttop"><h2>🔎 Lost &amp; Found</h2><span class="lostbadge">COMMUNITY</span></div><p class="hint">Post a found item or report something missing. This demo shows alerts in this browser.</p><form class="lostform" id="lostForm"><label class="field"><span style="font-size:12px;font-weight:750;color:#4c5a6d">ITEM NAME</span><input id="lostName" maxlength="60" placeholder="e.g. Blue water bottle" required></label><label class="field"><span style="font-size:12px;font-weight:750;color:#4c5a6d">POST TYPE</span><select id="lostType"><option value="Lost">I lost something</option><option value="Found">I found something</option></select></label><label class="field"><span style="font-size:12px;font-weight:750;color:#4c5a6d">LAST SEEN / FOUND AT</span><select id="lostPlace"></select></label><label class="field"><span style="font-size:12px;font-weight:750;color:#4c5a6d">DETAILS (OPTIONAL)</span><textarea id="lostDetails" maxlength="180" placeholder="Colour, time, or helpful details"></textarea></label><button class="primary" type="submit">＋ Post item</button></form><div class="lostlist" id="lostList"></div><p class="hint" id="lostHint" style="margin:10px 0 0">Sample posts are illustrative. Do not add private contact details.</p></section>
 </aside></section>
 
-<nav class="navix-bottom" aria-label="NAVIX shortcuts">
+<nav class="navix-bottom" aria-label="NAVIX main navigation">
+ <button type="button" data-nav="home" class="active"><span>⌂</span><span>Home</span></button>
  <button type="button" data-nav="lost"><span>🔎</span><span>Lost &amp; Found</span></button>
  <button type="button" data-nav="events"><span>🎟️</span><span>Events</span></button>
  <button type="button" data-nav="memory"><span>🌸</span><span>Memory Tree</span></button>
@@ -642,7 +643,7 @@ function enterGuest(){document.body.classList.add("guest-mode");document.body.cl
 function enterPersonal(){document.body.classList.remove("guest-mode");document.body.classList.add("personal-mode","game-mode");$("loginLabel").textContent=localStorage.getItem("navix-avatar-name")||"My world";$("headerAvatar").textContent=avatarEmoji;setMode(true);$("mapSubtitle").textContent="Your little buddy is ready to explore ✨";$("mapNote").textContent="Your world · Walk, explore, collect memories";if(lastRoute)findRoute()}
 $("loginBtn").addEventListener("click",()=>{avatarName.value=localStorage.getItem("navix-avatar-name")||"";setAvatar(localStorage.getItem("navix-avatar-emoji")||"🧑🏻‍🎓");setGlow(localStorage.getItem("navix-avatar-glow")||"lavender");avatarModal.classList.add("show");setTimeout(()=>avatarName.focus(),100)});
 $("backGuest").addEventListener("click",()=>avatarModal.classList.remove("show"));
-$("createAvatar").addEventListener("click",()=>{const nick=avatarName.value.trim()||"Explorer";localStorage.setItem("navix-avatar-name",nick);localStorage.setItem("navix-avatar-emoji",avatarEmoji);localStorage.setItem("navix-avatar-glow",avatarGlow);localStorage.setItem("navix-profile-mode","personal");avatarModal.classList.remove("show");profileMode.value="personal";updateProfile();enterPersonal();if(lastRoute)findRoute();});
+$("createAvatar").addEventListener("click",()=>{const nick=avatarName.value.trim()||"Explorer";localStorage.setItem("navix-avatar-name",nick);localStorage.setItem("navix-avatar-emoji",avatarEmoji);localStorage.setItem("navix-avatar-glow",avatarGlow);localStorage.setItem("navix-profile-mode","personal");avatarModal.classList.remove("show");profileMode.value="personal";updateProfile();enterPersonal();if(lastRoute)findRoute();if(pendingNavTab!=="home"){const tab=pendingNavTab;pendingNavTab="home";setNavTab(tab);}});
 avatarModal.addEventListener("click",e=>{if(e.target===avatarModal)avatarModal.classList.remove("show")});
 /* Always open in the clean guest interface; login is an intentional opt-in. */
 avatarEmoji=localStorage.getItem("navix-avatar-emoji")||avatarEmoji;
@@ -657,7 +658,53 @@ $("openSearch")?.addEventListener("click",openSearch);$("openSearchAlt")?.addEve
 $("detectLocation")?.addEventListener("click",()=>{const msg=$("locationMessage");if(!navigator.geolocation){msg.textContent="Location detection is not available here. Please choose your starting point manually.";return;}msg.textContent="Requesting location permission…";navigator.geolocation.getCurrentPosition(()=>{msg.textContent="Your device location was detected, but this demo uses illustrative campus locations. Please select the nearest campus starting point from the first bar."},()=>{msg.textContent="Location permission unavailable. Please select your starting point from the first bar."},{timeout:7000});});
 const oldFindRoute=findRoute;
 findRoute=function(){oldFindRoute();if($("searchDuration")){$("searchDuration").textContent=$("duration").textContent;$("searchDistance").textContent=$("distance").textContent;const m=Number(String($("distance").textContent).replace(/[^0-9.]/g,""));$("searchSteps").textContent=String(Math.round(m/0.75));$("searchRouteCopy").textContent=$("routeCopy").textContent;}};
-document.querySelectorAll(".navix-bottom [data-nav]").forEach(b=>b.addEventListener("click",()=>{const key=b.dataset.nav;if((key==="memory"||key==="forest")&&!document.body.classList.contains("personal-mode")){$("avatarModal").classList.add("show");return}document.querySelectorAll(".navix-bottom button").forEach(x=>x.classList.toggle("active",x===b));if(key==="lost"){const el=document.querySelector("#lostForm")?.closest(".card");el?.scrollIntoView({behavior:"smooth",block:"start"});}else if(key==="events"){let el=document.getElementById("eventsPanel");if(!el){el=document.createElement("section");el.id="eventsPanel";el.className="card panel";el.innerHTML="<h2>🎟️ Campus Events</h2><p class='hint'>Your campus events space is ready for upcoming workshops, club meets and celebrations.</p><p class='hint'>Event listings will appear here when added to NAVIX.</p>";document.querySelector(".layout")?.append(el);}el.scrollIntoView({behavior:"smooth",block:"start"});}else if(key==="memory"){document.querySelector("#memoryList")?.closest(".card")?.scrollIntoView({behavior:"smooth",block:"start"});}else if(key==="forest"){document.getElementById("gamePanel")?.scrollIntoView({behavior:"smooth",block:"start"});}}));
+/* Bottom navigation is a real five-tab app shell: every feature gets its own focused screen. */
+let pendingNavTab="home";
+const navLayout=document.querySelector(".layout");
+const navMapCard=navLayout?.querySelector(":scope > article.card");
+const navRouteCard=navLayout?.querySelector(":scope > .side > .card:first-child");
+const navLostCard=document.querySelector("#lostForm")?.closest(".card");
+let navEvents=document.getElementById("eventsPanel");
+if(!navEvents){
+ navEvents=document.createElement("section");
+ navEvents.id="eventsPanel";navEvents.className="card panel events-world tab-hidden";
+ navEvents.innerHTML=`<div class="events-hero"><div><span class="events-kicker">CAMPUS LIFE</span><h2>Little things happening at LNCT ✨</h2><p>Club meets, workshops, performances and moments worth showing up for.</p></div><div class="events-hero-art" aria-hidden="true"><span>🎨</span><span>🎭</span><span>🎶</span><i>✦</i></div></div>
+ <div class="events-section-title"><div><strong>Explore campus activities</strong><span>Illustrative event categories for the prototype</span></div><span class="events-pill">COMING UP</span></div>
+ <div class="events-grid">
+  <article class="event-card"><div class="event-art art-stage"><span>🎭</span><i>✦</i></div><div class="event-card-copy"><span class="event-type">CULTURE &amp; ARTS</span><h3>Drama, dance &amp; open mic</h3><p>Discover performances, auditions and creative club meets.</p><span class="event-status">Club updates coming soon</span></div></article>
+  <article class="event-card"><div class="event-art art-lab"><span>💡</span><i>✧</i></div><div class="event-card-copy"><span class="event-type">LEARN &amp; BUILD</span><h3>Workshops &amp; hack days</h3><p>Make something with other curious campus minds.</p><span class="event-status">Workshop listings coming soon</span></div></article>
+  <article class="event-card"><div class="event-art art-garden"><span>🌷</span><i>♡</i></div><div class="event-card-copy"><span class="event-type">CAMPUS MOMENTS</span><h3>Fests &amp; student gatherings</h3><p>Keep track of celebrations and community activities.</p><span class="event-status">Campus calendar coming soon</span></div></article>
+ </div><p class="events-footnote">These are visual demo cards, not confirmed events or dates. Real listings can be added when the college calendar is available.</p>`;
+ navLayout?.after(navEvents);
+}
+function navShow(el,show){if(el)el.classList.toggle("tab-hidden",!show)}
+function setNavTab(key){
+ const allowed=["home","lost","events","memory","forest"];if(!allowed.includes(key))key="home";
+ if((key==="memory"||key==="forest")&&!document.body.classList.contains("personal-mode")){
+  pendingNavTab=key;$("avatarModal").classList.add("show");return;
+ }
+ document.body.dataset.navTab=key;
+ document.querySelectorAll(".navix-bottom [data-nav]").forEach(b=>{const active=b.dataset.nav===key;b.classList.toggle("active",active);if(active)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
+ const home=key==="home";
+ navShow(document.querySelector("main > .hero"),home);
+ navShow(document.getElementById("guestSearchBar"),home);
+ navShow(document.getElementById("searchWorkspace"),home);
+ navShow(document.querySelector("main > .profilebar"),home);
+ navShow(navMapCard,home);
+ navShow(navRouteCard,home);
+ navShow(document.getElementById("gamePanel"),key==="forest");
+ navShow(document.getElementById("memoryPanel"),key==="memory");
+ navShow(navLostCard,key==="lost");
+ navShow(navEvents,key==="events");
+ if(navLayout)navLayout.classList.toggle("tab-layout-home",home);
+ if(key==="events")navEvents?.scrollIntoView({behavior:"smooth",block:"start"});
+ else if(key==="lost")navLostCard?.scrollIntoView({behavior:"smooth",block:"start"});
+ else if(key==="memory")document.getElementById("memoryPanel")?.scrollIntoView({behavior:"smooth",block:"start"});
+ else if(key==="forest")document.getElementById("gamePanel")?.scrollIntoView({behavior:"smooth",block:"start"});
+ else window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll(".navix-bottom [data-nav]").forEach(b=>b.addEventListener("click",()=>setNavTab(b.dataset.nav)));
+
 
 
 /* Forest collection shop: walking earns coins; coins unlock permanent tree species. */
@@ -693,11 +740,89 @@ const njSearchMarker=document.createComment("NAVIX search workspace position"),n
 function njShow(n){njScreens.forEach(el=>el.classList.toggle("active",Number(el.dataset.screen)===n));document.getElementById("njStep").textContent=({1:"CAMPUS NAVIGATION",2:"WELCOME",4:"ROUTE PLANNER",5:"NAVIGATION",6:"ARRIVAL"})[n]||"NAVIX";nj.scrollTop=0;}
 function njRestoreSearch(){if(njSearchMarker.parentNode)njSearchMarker.parentNode.insertBefore(njSearch,njSearchMarker.nextSibling);njSearch.classList.remove("open");}
 function njRestoreMap(){if(njMapMarker.parentNode)njMapMarker.parentNode.insertBefore(njMapCard,njMapMarker.nextSibling);if(njMapStage&&njMap&&njMap.parentNode!==njMapStage)njMapStage.appendChild(njMap);}
-function njEnterApp(){njRestoreSearch();njRestoreMap();nj.classList.remove("active");document.body.classList.remove("search-open");}
+function njEnterApp(){njRestoreSearch();njRestoreMap();nj.classList.remove("active");document.body.classList.remove("search-open");setNavTab(document.body.dataset.navTab||"home");}
 function njOpenRoute(){njSearch.classList.add("open");document.getElementById("njRouteSlot").appendChild(njSearch);njShow(4);}
 function njOpenNav(){if(!lastRoute||!lastRoute.length)return;document.getElementById("njMapSlot").appendChild(njMapCard);if(njMapStage&&njMap&&njMap.parentNode!==njMapStage)njMapStage.appendChild(njMap);document.getElementById("njInstruction").textContent=document.getElementById("routeCopy")?.textContent||"Follow the highlighted campus path.";document.getElementById("njRemainingSteps").textContent=document.getElementById("searchSteps")?.textContent||"—";document.getElementById("njRemainingTime").textContent=document.getElementById("duration")?.textContent||"—";njShow(5);}
 document.getElementById("njBegin").addEventListener("click",()=>{document.getElementById("njWelcomeArt").appendChild(njMap);njShow(2);});document.getElementById("backGuest").addEventListener("click",()=>{nj.classList.add("active");njShow(2);});document.getElementById("njLogin").addEventListener("click",()=>{nj.classList.remove("active");document.getElementById("loginBtn").click();});document.getElementById("njSignup").addEventListener("click",()=>{nj.classList.remove("active");document.getElementById("loginBtn").click();});document.getElementById("createAvatar").addEventListener("click",()=>{setTimeout(()=>{nj.classList.add("active");njOpenRoute();},50);});document.getElementById("njGuest").addEventListener("click",()=>{if(typeof enterGuest==="function")enterGuest();njOpenRoute();});document.getElementById("njStartNavigation").addEventListener("click",()=>{document.getElementById("findRoute").click();setTimeout(njOpenNav,0);});document.getElementById("njBackToRoute").addEventListener("click",()=>{njSearch.classList.add("open");document.getElementById("njRouteSlot").appendChild(njSearch);njShow(4);});document.getElementById("njArrive").addEventListener("click",()=>{document.getElementById("completeWalk").click();const d=document.getElementById("distance")?.textContent||"0",m=Number(String(d).replace(/[^0-9.]/g,""))||0;document.getElementById("njStepsEarned").textContent=String(Math.round(m/.75));document.getElementById("njCoinsEarned").textContent="+"+Math.max(5,Math.round(m/35))+" 🪙";njShow(6);});document.getElementById("njContinue").addEventListener("click",njEnterApp);
-</script></body></html>
+</script><style id="navix-real-tabs-refresh">
+/* NAVIX: focused tab screens + visual card system */
+:root{--navix-violet:#6658d9;--navix-lilac:#f0edff;--navix-pink:#ffdeee;--navix-mint:#e2f7e9}
+body{padding-bottom:0}
+main{padding-bottom:calc(112px + env(safe-area-inset-bottom))}
+.tab-hidden{display:none!important}
+.layout:not(.tab-layout-home){display:block!important;grid-template-columns:1fr!important}
+.layout:not(.tab-layout-home)>.side{display:block!important}
+.layout:not(.tab-layout-home)>.side>.card{width:100%;margin:0}
+.navix-bottom{grid-template-columns:repeat(5,minmax(0,1fr));padding:7px 6px calc(8px + env(safe-area-inset-bottom));gap:5px;background:#fffdf9f2;border-top:1px solid #e7e0f3;box-shadow:0 -8px 28px #5c4b8b12}
+.navix-bottom button{position:relative;gap:4px;padding:7px 2px 6px;border-radius:15px;font-size:10px;color:#8b85a7;transition:background .2s ease,color .2s ease,transform .2s ease}
+.navix-bottom button span:first-child{font-size:21px;filter:saturate(.85)}
+.navix-bottom button.active{background:linear-gradient(145deg,#f1edff,#fff0f7);color:#5749bd}
+.navix-bottom button.active:before{content:"";position:absolute;top:2px;width:19px;height:3px;border-radius:8px;background:#7966e8}
+.navix-bottom button:active{transform:translateY(1px) scale(.97)}
+.events-world{overflow:hidden;padding:clamp(16px,3vw,28px);border-radius:25px;background:#fffdfa}
+.events-hero{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:180px;padding:clamp(20px,4vw,36px);border-radius:22px;background:linear-gradient(120deg,#fff0f6,#f0edff 60%,#e9f8ed);position:relative;overflow:hidden}
+.events-hero:after{content:"";position:absolute;inset:0;background-image:radial-gradient(#fff 1.5px,transparent 1.5px);background-size:22px 22px;opacity:.4;pointer-events:none}
+.events-hero>div:first-child{position:relative;z-index:1;max-width:550px}
+.events-kicker,.event-type{font-size:10px;font-weight:900;letter-spacing:.12em;color:#8061b8}
+.events-hero h2{font-size:clamp(25px,4vw,38px);line-height:1.08;letter-spacing:-.04em;color:#39346f;margin:9px 0}
+.events-hero p{font-size:13px;line-height:1.6;color:#79739a;margin:0;max-width:42ch}
+.events-hero-art{position:relative;z-index:1;flex:0 0 155px;height:125px;display:flex;align-items:center;justify-content:center;gap:0}
+.events-hero-art span{display:grid;place-items:center;width:66px;height:78px;border:3px solid #fff;border-radius:24px;font-size:35px;box-shadow:0 9px 18px #7567a51c;transform:rotate(-9deg);background:#ffe0ed}
+.events-hero-art span+span{margin-left:-13px;transform:rotate(9deg) translateY(12px);background:#e4e0ff}
+.events-hero-art span:nth-child(3){position:absolute;right:0;top:0;width:48px;height:53px;font-size:25px;background:#dcf7e8;transform:rotate(8deg)}
+.events-hero-art i{position:absolute;top:4px;left:9px;color:#f4a7c9;font-size:24px;font-style:normal}
+.events-section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:25px 2px 13px}
+.events-section-title strong,.events-section-title span{display:block}
+.events-section-title strong{font-size:17px;color:#37346f}
+.events-section-title div>span{font-size:11px;color:#8b85a7;margin-top:3px}
+.events-pill{background:#f2edff;color:#6553c7;border-radius:99px;padding:7px 10px;font-size:9px;font-weight:900;letter-spacing:.08em;white-space:nowrap}
+.events-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.event-card{min-width:0;border:1px solid #ece6f4;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 5px 18px #51418b08}
+.event-art{height:145px;display:grid;place-items:center;position:relative;overflow:hidden}
+.event-art:before,.event-art:after{content:"";position:absolute;border-radius:50%;background:#ffffff65}
+.event-art:before{width:140px;height:140px;left:-30px;bottom:-70px}
+.event-art:after{width:100px;height:100px;right:-28px;top:-25px}
+.event-art>span{position:relative;z-index:1;font-size:58px;filter:drop-shadow(0 7px 5px #40335b22);animation:eventFloat 3s ease-in-out infinite}
+.event-art i{position:absolute;right:20%;top:20%;font-size:25px;font-style:normal;color:#fff;z-index:1}
+.art-stage{background:linear-gradient(145deg,#ffdce9,#f5dfff 55%,#dedbff)}
+.art-lab{background:linear-gradient(145deg,#d9f7ed,#dff0ff 55%,#d8d9ff)}
+.art-garden{background:linear-gradient(145deg,#fff0d8,#f9ddec 55%,#e5e0ff)}
+.event-card-copy{padding:15px}
+.event-card-copy h3{font-size:15px;line-height:1.3;color:#37346f;margin:7px 0}
+.event-card-copy p{font-size:12px;line-height:1.55;color:#817c9b;margin:0 0 13px}
+.event-status{display:block;padding:8px 9px;border-radius:10px;background:#f7f4ff;color:#7864bf;font-size:10px;font-weight:800}
+.events-footnote{margin:17px 3px 0;color:#8a85a2;font-size:10px;line-height:1.6}
+@keyframes eventFloat{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-5px) rotate(3deg)}}
+#memoryPanel,#gamePanel,.layout:not(.tab-layout-home)>.side>.card{border-radius:23px}
+body[data-nav-tab="memory"] #memoryPanel,body[data-nav-tab="forest"] #gamePanel{box-shadow:0 14px 35px #5d4a9b13}
+body[data-nav-tab="forest"] #gamePanel .forest-scene{min-height:250px}
+body[data-nav-tab="forest"] #gamePanel .forest-main-tree{font-size:86px}
+body[data-nav-tab="forest"] #gamePanel .forest-inline-shop{margin-top:20px}
+body[data-nav-tab="forest"] #gamePanel .forest-shop-art{height:150px}
+body[data-nav-tab="lost"] #lostForm{gap:12px}
+body[data-nav-tab="lost"] .lostitem{background:linear-gradient(120deg,#fffdfb,#f7f4ff);border-radius:15px;padding:14px}
+@media(max-width:650px){
+ main{padding:12px 10px calc(108px + env(safe-area-inset-bottom))}
+ .navix-bottom button{font-size:9px;padding:8px 1px 6px;gap:4px}
+ .navix-bottom button span:first-child{font-size:21px}
+ .events-world{padding:11px;border-radius:20px}
+ .events-hero{min-height:0;padding:19px 16px;border-radius:18px;gap:4px}
+ .events-hero-art{flex-basis:95px;height:92px;transform:scale(.82);transform-origin:right center;margin-left:-10px}
+ .events-hero h2{font-size:25px;max-width:18ch}
+ .events-hero p{font-size:12px;max-width:29ch}
+ .events-grid{grid-template-columns:1fr;gap:11px}
+ .event-card{display:grid;grid-template-columns:108px minmax(0,1fr);align-items:stretch}
+ .event-art{height:100%;min-height:155px}
+ .event-art>span{font-size:43px}
+ .event-card-copy{padding:12px}
+ .event-card-copy h3{font-size:14px}
+ .event-card-copy p{font-size:11px;margin-bottom:9px}
+ .event-status{font-size:9px;padding:7px}
+ .events-section-title{margin-top:19px}
+ body[data-nav-tab="forest"] #gamePanel .forest-shop-art{height:116px}
+}
+@media(prefers-reduced-motion:reduce){.event-art>span{animation:none!important}}
+</style></body></html>
 <style>.forest-shop-art{background:radial-gradient(ellipse at 50% 85%,#d5eedb,#eff9ed 48%,#f8f6ff);padding:4px}.forest-shop-art img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 5px 4px #253e3820);transition:transform .25s ease,filter .25s ease}.forest-shop-card:hover .forest-shop-art img{transform:translateY(-3px) scale(1.045);filter:drop-shadow(0 8px 7px #253e3830)}.forest-shop-card{box-shadow:0 5px 16px #34465c0a;transition:transform .2s ease,box-shadow .2s ease}.forest-shop-card:active{transform:scale(.985)}@media(prefers-reduced-motion:reduce){.forest-shop-art img,.forest-shop-card{transition:none!important}}</style>
 
 <style id="navix-prototype-visual-refresh">
