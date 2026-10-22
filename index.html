@@ -1400,11 +1400,23 @@ document.getElementById("createAvatar")?.addEventListener("click",()=>{if(docume
     top:calc(65px + env(safe-area-inset-top))!important;
     z-index:13!important;
   }
+  /* Put zoom controls at the bottom-right, below the progress meter, never on top of its bar. */
   body.guest-mode:not(.search-open) .maptools,
   body.personal-mode .maptools{
-    top:132px!important;
+    top:auto!important;
+    bottom:10px!important;
     right:10px!important;
     z-index:40!important;
+  }
+  body.guest-mode:not(.search-open) .map-step-meter,
+  body.personal-mode .map-step-meter{
+    top:10px!important;
+    transform:none!important;
+  }
+  body.guest-mode:not(.search-open) .meter-track,
+  body.personal-mode .meter-track{
+    height:100px!important;
+    min-height:100px!important;
   }
   .maptools button{
     width:40px!important;
