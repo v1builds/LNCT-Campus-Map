@@ -1370,5 +1370,30 @@ document.getElementById("createAvatar")?.addEventListener("click",()=>{if(docume
 @media(prefers-reduced-motion:reduce){.meter-reopen{animation:none!important}}
 </style>
 
+
+<style id="navix-map-controls-visibility-fix">
+/* Keep zoom controls above floating search UI and away from its overlap zone. */
+.maptools{
+  z-index:40!important;
+  pointer-events:auto!important;
+}
+.maptools button{
+  position:relative!important;
+  z-index:41!important;
+  pointer-events:auto!important;
+}
+@media(max-width:600px){
+  .maptools{
+    top:68px!important;
+    right:10px!important;
+    z-index:40!important;
+  }
+  .maptools button{
+    width:40px!important;
+    height:40px!important;
+    box-shadow:0 4px 14px #263b5530!important;
+  }
+}
+</style>
 </body>
 </html>
