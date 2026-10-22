@@ -1146,6 +1146,34 @@ document.querySelectorAll(".look-tab").forEach(t=>t.addEventListener("click",()=
  window.addEventListener("storage",syncGrowthMeter);
 })();
 </script>
+
+<style id="navix-compact-meter-toggle">
+.map-step-meter{width:62px!important;box-sizing:border-box;padding:22px 7px 10px!important;pointer-events:auto!important;transition:transform .24s ease,opacity .24s ease!important}
+.meter-close{position:absolute;right:5px;top:4px;width:20px;height:20px;border:0;border-radius:50%;background:#eee8ff;color:#6651b7;font-size:16px;line-height:18px;padding:0;display:grid;place-items:center;cursor:pointer;pointer-events:auto}
+.meter-tree-count{gap:3px!important;padding-bottom:7px!important}
+.meter-tree-count small,.meter-step-label,.meter-tick{display:none!important}
+.meter-vertical{padding-top:8px!important;justify-content:center}
+.meter-track{flex:0 0 27px!important;overflow:hidden!important}
+.map-step-meter.is-collapsed{opacity:0!important;transform:translate(20px,-50%) scale(.8)!important;pointer-events:none!important}
+.meter-reopen{position:absolute;z-index:8;right:10px;top:50%;transform:translateY(-50%);display:none;width:42px;height:48px;border:1px solid #fff;border-radius:16px;background:linear-gradient(155deg,#fff,#f1e8ff 55%,#e2fff1);box-shadow:0 8px 24px #5047a33a;font-size:23px;cursor:pointer}
+.meter-reopen.show{display:grid;place-items:center}
+@media(max-width:600px){.map-step-meter{right:8px!important;width:56px!important;padding:22px 6px 9px!important}.meter-track{flex-basis:25px!important}.meter-reopen{right:8px;width:38px;height:44px}}
+</style>
+<script id="navix-meter-toggle-logic">
+(function(){
+ const meter=document.getElementById("mapStepMeter");
+ const close=document.getElementById("meterClose");
+ const stage=document.querySelector(".mapstage");
+ if(!meter||!close||!stage||document.getElementById("meterReopen"))return;
+ const reopen=document.createElement("button");
+ reopen.type="button";reopen.id="meterReopen";reopen.className="meter-reopen";
+ reopen.setAttribute("aria-label","Show tree progress");reopen.title="Show tree progress";reopen.textContent="🌈";
+ stage.appendChild(reopen);
+ close.addEventListener("click",function(){meter.classList.add("is-collapsed");reopen.classList.add("show")});
+ reopen.addEventListener("click",function(){meter.classList.remove("is-collapsed");reopen.classList.remove("show")});
+})();
+</script>
+
 </body></html>
 <style>.forest-shop-art{background:radial-gradient(ellipse at 50% 85%,#d5eedb,#eff9ed 48%,#f8f6ff);padding:4px}.forest-shop-art img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 5px 4px #253e3820);transition:transform .25s ease,filter .25s ease}.forest-shop-card:hover .forest-shop-art img{transform:translateY(-3px) scale(1.045);filter:drop-shadow(0 8px 7px #253e3830)}.forest-shop-card{box-shadow:0 5px 16px #34465c0a;transition:transform .2s ease,box-shadow .2s ease}.forest-shop-card:active{transform:scale(.985)}@media(prefers-reduced-motion:reduce){.forest-shop-art img,.forest-shop-card{transition:none!important}}</style>
 
