@@ -1372,7 +1372,8 @@ document.getElementById("createAvatar")?.addEventListener("click",()=>{if(docume
 
 
 <style id="navix-map-controls-visibility-fix">
-/* Keep zoom controls above floating search UI and away from its overlap zone. */
+/* The guest map is a full-screen layer and the search bar floats above it.
+   Keep the zoom stack below the search bar, with enough vertical clearance. */
 .maptools{
   z-index:40!important;
   pointer-events:auto!important;
@@ -1383,8 +1384,13 @@ document.getElementById("createAvatar")?.addEventListener("click",()=>{if(docume
   pointer-events:auto!important;
 }
 @media(max-width:600px){
-  .maptools{
-    top:68px!important;
+  body.guest-mode:not(.search-open) .guest-search{
+    top:calc(65px + env(safe-area-inset-top))!important;
+    z-index:13!important;
+  }
+  body.guest-mode:not(.search-open) .maptools,
+  body.personal-mode .maptools{
+    top:132px!important;
     right:10px!important;
     z-index:40!important;
   }
