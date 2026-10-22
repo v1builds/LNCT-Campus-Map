@@ -552,8 +552,8 @@ body[data-nav-tab="forest"] #gamePanel>.forest-overview{margin:0!important;paddi
  </div>
 </section>
 <div class="profilebar"><div><strong>👋 Explore as a guest</strong><br><span id="profileHint">No sign-up needed · Demo preferences stay in this browser</span></div><select id="profileMode" aria-label="Choose demo profile"><option value="guest">Guest mode</option><option value="personal">Personalized demo</option></select></div><section class="layout"><article class="card"><div class="maphead"><div><strong id="mapTitle">LNCT campus map</strong><small id="mapSubtitle">Tap a building to choose it as your destination</small></div><span class="tag" id="modeTag">SCHEMATIC PREVIEW</span></div>
-<div class="map-progress-hud" id="mapProgressHud" aria-label="NAVIX progress"><div class="map-hud-stats"><div class="map-hud-stat"><span class="map-hud-icon">🪙</span><span><small>TOTAL COINS</small><strong id="mapHudCoins">40</strong></span></div><div class="map-hud-stat"><span class="map-hud-icon">🌳</span><span><small>TREES</small><strong id="mapHudTrees">1</strong></span></div></div><div class="map-hud-progress"><div class="map-hud-progress-copy"><span id="mapHudLevel">🌱 Sprout level</span><strong id="mapHudProgressText">0/50 points</strong></div><div class="map-hud-track"><span id="mapHudProgressFill"></span></div></div></div>
-<div class="mapstage"><svg id="campusMap" viewBox="0 0 820 650" role="img" aria-label="Fictional illustrative miniature campus map. Tap a building for details.">
+
+<div class="mapstage"><div class="map-coin-pill" aria-label="Total coins"><span>🪙</span><small>TOTAL COINS</small><strong id="mapHudCoins">40</strong></div><aside class="map-step-meter" id="mapStepMeter" aria-label="Tree growth progress"><div class="meter-tree-count"><span id="mapHudTreeIcon">🌳</span><div><strong id="mapHudTrees">0</strong><small>TREES GROWN</small></div></div><div class="meter-vertical"><div class="meter-track"><div class="meter-fill" id="mapHudProgressFill"></div><span class="meter-tick tick-10">10</span><span class="meter-tick tick-20">20</span><span class="meter-tick tick-30">30</span><span class="meter-tick tick-40">40</span><span class="meter-tick tick-50">50</span><span class="meter-tick tick-60">60</span><span class="meter-tick tick-70">70</span><span class="meter-tick tick-80">80</span><span class="meter-tick tick-90">90</span><span class="meter-tick tick-100">100</span></div><div class="meter-step-label"><strong id="mapHudProgressText">0 / 100</strong><small>steps to grow a tree</small><span id="mapHudLevel">🌱 Growing</span></div></div><div class="meter-tree-pop" id="mapTreePop" aria-live="polite">🌳 Tree grown!</div></aside><svg id="campusMap" viewBox="0 0 820 650" role="img" aria-label="Fictional illustrative miniature campus map. Tap a building for details.">
 <defs>
  <linearGradient id="grass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8f7df"/><stop offset="1" stop-color="#d3eedb"/></linearGradient>
  <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d6e2dc"/><stop offset="1" stop-color="#c6d7d0"/></linearGradient>
@@ -1057,7 +1057,83 @@ document.querySelectorAll(".look-tab").forEach(t=>t.addEventListener("click",()=
 })();
 </script>
 
-<style id="navix-avatar-walk-upgrade">.navix-walking-buddy{overflow:visible;pointer-events:none;filter:drop-shadow(0 4px 3px #443a7750)}.navix-walking-buddy .navix-buddy-art{width:100%;height:100%;overflow:visible}#headerAvatar .navix-buddy-art{width:25px;height:29px;vertical-align:middle;display:block}.avatar-preview .navix-buddy-art{overflow:visible}@keyframes navix-avatar-step-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}.navix-walking-buddy .navix-buddy-art{animation:navix-avatar-step-bob .42s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.navix-walking-buddy .navix-buddy-art{animation:none!important}}</style><style id="navix-map-progress-hud-style">.map-progress-hud{position:relative;z-index:2;width:100%;box-sizing:border-box;padding:11px 14px;border-bottom:1px solid #e4eee5;background:linear-gradient(100deg,#ffffff,#f5fff4 55%,#f2f5ff);display:grid;grid-template-columns:minmax(0,1fr) minmax(130px,.85fr);align-items:center;gap:14px;box-shadow:0 3px 10px #344e4908;pointer-events:none}.map-hud-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}.map-hud-stat{display:flex;align-items:center;gap:8px;min-width:0}.map-hud-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:#f1f4ff;font-size:19px}.map-hud-stat small{display:block;font-size:9px;font-weight:850;letter-spacing:.07em;color:#7c8296}.map-hud-stat strong{display:block;color:#303953;font-size:17px;line-height:1.25}.map-hud-progress{margin-top:10px;padding-top:8px;border-top:1px solid #e9eced}.map-hud-progress-copy{display:flex;justify-content:space-between;align-items:center;gap:6px;font-size:10px;color:#58637a;font-weight:750}.map-hud-progress-copy strong{white-space:nowrap;color:#4c8a63;font-size:10px}.map-hud-track{height:7px;margin-top:6px;border-radius:99px;background:#e5eee5;overflow:hidden}.map-hud-track span{display:block;width:0;height:100%;border-radius:99px;background:linear-gradient(90deg,#8ad7a2,#55b985);transition:width .35s ease}@media(max-width:600px){.map-progress-hud{grid-template-columns:1fr;gap:8px;padding:9px 11px}.map-hud-stats{grid-template-columns:1fr 1fr}.map-hud-icon{width:29px;height:29px;font-size:17px}.map-hud-stat small{font-size:8px}.map-hud-stat strong{font-size:15px}.map-hud-progress{margin-top:0;padding-top:7px;border-top:1px solid #e6eee6}.map-hud-progress-copy,.map-hud-progress-copy strong{font-size:10px}}@media(prefers-reduced-motion:reduce){.map-hud-track span{transition:none}}</style><script id="navix-map-progress-hud-logic">(function(){const $=id=>document.getElementById(id);function syncMapHud(){const coins=Number(localStorage.getItem("navix-forest-coins")||40);let plants=[];try{plants=JSON.parse(localStorage.getItem("navix-garden-plants")||"[]")}catch(e){}const points=Number(localStorage.getItem("navix-points")||0),stage=Math.min(4,Math.floor(points/50)),labels=["🌱 Sprout level","🌿 Growing level","🪴 Taking root","🌳 Forest level","✨ Bloom level"],set=(id,v)=>{const el=$(id);if(el)el.textContent=String(v)};set("mapHudCoins",coins.toLocaleString());set("mapHudTrees",Math.max(1,plants.length));set("mapHudLevel",labels[stage]);set("mapHudProgressText",stage===4?"Max level!":(points%50)+"/50 points");const fill=$("mapHudProgressFill");if(fill)fill.style.width=stage===4?"100%":((points%50)*2)+"%"}window.navixSyncMapHud=syncMapHud;syncMapHud();document.addEventListener("click",e=>{if(e.target.closest("#completeWalk,#plantSeed,.forest-shop-buy,#forestShopClose"))setTimeout(syncMapHud,80)});window.addEventListener("storage",syncMapHud)})();</script></body></html>
+<style id="navix-avatar-walk-upgrade">.navix-walking-buddy{overflow:visible;pointer-events:none;filter:drop-shadow(0 4px 3px #443a7750)}.navix-walking-buddy .navix-buddy-art{width:100%;height:100%;overflow:visible}#headerAvatar .navix-buddy-art{width:25px;height:29px;vertical-align:middle;display:block}.avatar-preview .navix-buddy-art{overflow:visible}@keyframes navix-avatar-step-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}.navix-walking-buddy .navix-buddy-art{animation:navix-avatar-step-bob .42s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.navix-walking-buddy .navix-buddy-art{animation:none!important}}</style><style id="navix-map-progress-hud-style">.map-progress-hud{position:relative;z-index:2;width:100%;box-sizing:border-box;padding:11px 14px;border-bottom:1px solid #e4eee5;background:linear-gradient(100deg,#ffffff,#f5fff4 55%,#f2f5ff);display:grid;grid-template-columns:minmax(0,1fr) minmax(130px,.85fr);align-items:center;gap:14px;box-shadow:0 3px 10px #344e4908;pointer-events:none}.map-hud-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}.map-hud-stat{display:flex;align-items:center;gap:8px;min-width:0}.map-hud-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:#f1f4ff;font-size:19px}.map-hud-stat small{display:block;font-size:9px;font-weight:850;letter-spacing:.07em;color:#7c8296}.map-hud-stat strong{display:block;color:#303953;font-size:17px;line-height:1.25}.map-hud-progress{margin-top:10px;padding-top:8px;border-top:1px solid #e9eced}.map-hud-progress-copy{display:flex;justify-content:space-between;align-items:center;gap:6px;font-size:10px;color:#58637a;font-weight:750}.map-hud-progress-copy strong{white-space:nowrap;color:#4c8a63;font-size:10px}.map-hud-track{height:7px;margin-top:6px;border-radius:99px;background:#e5eee5;overflow:hidden}.map-hud-track span{display:block;width:0;height:100%;border-radius:99px;background:linear-gradient(90deg,#8ad7a2,#55b985);transition:width .35s ease}@media(max-width:600px){.map-progress-hud{grid-template-columns:1fr;gap:8px;padding:9px 11px}.map-hud-stats{grid-template-columns:1fr 1fr}.map-hud-icon{width:29px;height:29px;font-size:17px}.map-hud-stat small{font-size:8px}.map-hud-stat strong{font-size:15px}.map-hud-progress{margin-top:0;padding-top:7px;border-top:1px solid #e6eee6}.map-hud-progress-copy,.map-hud-progress-copy strong{font-size:10px}}@media(prefers-reduced-motion:reduce){.map-hud-track span{transition:none}}</style><script id="navix-map-progress-hud-logic">(function(){const $=id=>document.getElementById(id);function syncMapHud(){const coins=Number(localStorage.getItem("navix-forest-coins")||40);let plants=[];try{plants=JSON.parse(localStorage.getItem("navix-garden-plants")||"[]")}catch(e){}const points=Number(localStorage.getItem("navix-points")||0),stage=Math.min(4,Math.floor(points/50)),labels=["🌱 Sprout level","🌿 Growing level","🪴 Taking root","🌳 Forest level","✨ Bloom level"],set=(id,v)=>{const el=$(id);if(el)el.textContent=String(v)};set("mapHudCoins",coins.toLocaleString());set("mapHudTrees",Math.max(1,plants.length));set("mapHudLevel",labels[stage]);set("mapHudProgressText",stage===4?"Max level!":(points%50)+"/50 points");const fill=$("mapHudProgressFill");if(fill)fill.style.width=stage===4?"100%":((points%50)*2)+"%"}window.navixSyncMapHud=syncMapHud;syncMapHud();document.addEventListener("click",e=>{if(e.target.closest("#completeWalk,#plantSeed,.forest-shop-buy,#forestShopClose"))setTimeout(syncMapHud,80)});window.addEventListener("storage",syncMapHud)})();</script><style id="navix-fullscreen-map-growth">
+/* Full-screen campus map with a vertical, step-by-step tree-growth meter */
+@media(min-width:0px){
+ body.guest-mode:not(.search-open) .hero{display:none!important}
+ body.guest-mode:not(.search-open) main{padding:0!important}
+ body.guest-mode:not(.search-open) .guest-search{position:fixed;z-index:13;top:72px;left:12px;right:12px;margin:0;width:auto}
+ body.guest-mode:not(.search-open) .search-open-btn{min-height:52px;box-shadow:0 5px 18px #253b4b22;border:1px solid #ffffffd9}
+ body.guest-mode:not(.search-open) .layout{position:fixed!important;z-index:2;top:0;left:0;right:0;bottom:calc(63px + env(safe-area-inset-bottom));display:block!important;margin:0!important;padding:0!important;width:100%;height:auto;overflow:hidden}
+ body.guest-mode:not(.search-open) .layout>article{position:absolute;inset:0;width:100%!important;height:100%;max-width:none;border:0!important;border-radius:0!important;box-shadow:none!important;overflow:hidden}
+ body.guest-mode:not(.search-open) .maphead{display:none!important}
+ body.guest-mode:not(.search-open) .mapstage{position:absolute;inset:0;width:100%;height:100%;min-height:0;border-radius:0!important;overflow:hidden}
+ body.guest-mode:not(.search-open) .mapstage svg{position:absolute;inset:0;width:100%;height:100%;min-height:0;max-height:none;display:block;object-fit:cover}
+ body.guest-mode:not(.search-open) .map-progress-hud{display:none!important}
+ body.guest-mode:not(.search-open) .map-coin-pill{position:absolute;z-index:5;top:calc(70px + env(safe-area-inset-top));left:12px;display:flex;align-items:center;gap:6px;padding:9px 12px;border:1px solid #fff;border-radius:15px;background:#fffffff0;box-shadow:0 5px 18px #263f3a20;backdrop-filter:blur(12px);color:#2e3853}
+ body.guest-mode:not(.search-open) .map-coin-pill span{font-size:19px}
+ body.guest-mode:not(.search-open) .map-coin-pill small{font-size:8px;letter-spacing:.06em;font-weight:900;color:#7a8297}
+ body.guest-mode:not(.search-open) .map-coin-pill strong{font-size:16px}
+ .map-coin-pill{display:none}
+ .map-step-meter{position:absolute;z-index:6;right:10px;top:50%;transform:translateY(-50%);width:104px;padding:10px 8px 12px;border:1px solid #ffffffed;border-radius:22px;background:linear-gradient(160deg,#fffffff2,#f7fff3ed);box-shadow:0 8px 26px #264e3b24;backdrop-filter:blur(12px);color:#2e3853;pointer-events:none}
+ .meter-tree-count{display:flex;align-items:center;justify-content:center;gap:5px;padding-bottom:8px;border-bottom:1px solid #e5eee5}
+ .meter-tree-count>span{font-size:24px;transform-origin:bottom center}
+ .meter-tree-count strong{display:block;font-size:20px;line-height:1.05}
+ .meter-tree-count small{display:block;font-size:7px;font-weight:900;letter-spacing:.04em;color:#778578;margin-top:3px}
+ .meter-vertical{display:flex;align-items:center;gap:7px;padding-top:10px}
+ .meter-track{position:relative;flex:0 0 24px;height:min(36vh,290px);min-height:180px;border-radius:99px;background:linear-gradient(180deg,#e7f0e5,#f0f0df);border:1px solid #dfe9d9;overflow:visible}
+ .meter-fill{position:absolute;left:0;right:0;bottom:0;height:0;border-radius:99px;background:linear-gradient(0deg,#4fbd78,#a9e86f 80%,#d8f7a5);box-shadow:0 0 12px #78cf7a65;transition:height .45s cubic-bezier(.2,.8,.2,1)}
+ .meter-tick{position:absolute;left:50%;z-index:2;transform:translate(-50%,50%);width:20px;height:1px;background:#9fb89a;color:#697b6a;font-size:7px;font-weight:800;text-align:center}
+ .tick-10{bottom:10%}.tick-20{bottom:20%}.tick-30{bottom:30%}.tick-40{bottom:40%}.tick-50{bottom:50%}.tick-60{bottom:60%}.tick-70{bottom:70%}.tick-80{bottom:80%}.tick-90{bottom:90%}.tick-100{bottom:100%}
+ .meter-step-label{min-width:0;flex:1;text-align:center}
+ .meter-step-label strong{display:block;font-size:12px;line-height:1.2}
+ .meter-step-label small{display:block;font-size:8px;line-height:1.35;color:#778578;margin:4px 0}
+ .meter-step-label span{display:block;font-size:8px;font-weight:850;color:#4e9b67}
+ .meter-tree-pop{position:absolute;right:calc(100% + 8px);top:48px;width:112px;padding:8px;border-radius:12px;background:#fff;color:#398252;font-size:10px;font-weight:900;text-align:center;box-shadow:0 5px 18px #263f3a20;opacity:0;transform:translateY(6px) scale(.9);transition:opacity .2s,transform .2s}
+ .meter-tree-pop.show{opacity:1;transform:translateY(0) scale(1)}
+ .meter-tree-count>span.pop{animation:navix-tree-pop .65s cubic-bezier(.2,1.4,.5,1)}
+ @keyframes navix-tree-pop{0%{transform:scale(.4) translateY(8px)}65%{transform:scale(1.35) translateY(-5px)}100%{transform:scale(1) translateY(0)}}
+}
+@media(max-width:600px){
+ body.guest-mode:not(.search-open) .guest-search{top:calc(65px + env(safe-area-inset-top));left:10px;right:10px}
+ body.guest-mode:not(.search-open) .map-coin-pill{top:calc(126px + env(safe-area-inset-top));left:10px;padding:7px 9px}
+ .map-step-meter{right:8px;width:86px;padding:8px 6px 10px;border-radius:19px}
+ .meter-tree-count>span{font-size:21px}.meter-tree-count strong{font-size:18px}.meter-tree-count small{font-size:6px}
+ .meter-track{flex-basis:21px;height:min(34vh,245px);min-height:155px}
+ .meter-tick{font-size:6px;width:18px}.meter-vertical{gap:5px}.meter-step-label strong{font-size:11px}.meter-step-label small{font-size:7px}.meter-step-label span{font-size:7px}
+ .meter-tree-pop{right:calc(100% + 5px);width:96px}
+}
+@media(prefers-reduced-motion:reduce){.meter-fill,.meter-tree-count>span,.meter-tree-pop{animation:none!important;transition:none!important}}
+</style>
+<script id="navix-step-tree-growth-logic">
+(function(){
+ const $=id=>document.getElementById(id);
+ let previousMilestone=Math.floor(Number(localStorage.getItem("navix-steps")||0)/100);
+ function syncGrowthMeter(){
+  const steps=Math.max(0,Number(localStorage.getItem("navix-steps")||0));
+  const coins=Math.max(0,Number(localStorage.getItem("navix-forest-coins")||40));
+  let plants=[];try{plants=JSON.parse(localStorage.getItem("navix-garden-plants")||"[]")}catch{}
+  const milestones=Math.floor(steps/100),within=steps%100;
+  const set=(id,v)=>{const el=$(id);if(el)el.textContent=String(v)};
+  set("mapHudCoins",coins.toLocaleString());
+  set("mapHudTrees",milestones+plants.length);
+  set("mapHudProgressText",within+" / 100");
+  set("mapHudLevel",within===0&&steps>0?"🌳 Tree grown!":"🌱 Growing");
+  const fill=$("mapHudProgressFill");if(fill)fill.style.height=within+"%";
+  const pop=$("mapTreePop"),tree=$("mapHudTreeIcon");
+  if(milestones>previousMilestone){
+   if(tree){tree.classList.remove("pop");void tree.offsetWidth;tree.classList.add("pop")}
+   if(pop){pop.textContent="🌳 Tree "+milestones+" grown!";pop.classList.add("show");setTimeout(()=>pop.classList.remove("show"),2200)}
+  }
+  previousMilestone=milestones;
+ }
+ window.navixSyncMapHud=syncGrowthMeter;
+ syncGrowthMeter();
+ document.addEventListener("click",e=>{if(e.target.closest("#completeWalk,#plantSeed,.forest-shop-buy,#forestShopClose"))setTimeout(syncGrowthMeter,120)});
+ window.addEventListener("storage",syncGrowthMeter);
+})();
+</script>
+</body></html>
 <style>.forest-shop-art{background:radial-gradient(ellipse at 50% 85%,#d5eedb,#eff9ed 48%,#f8f6ff);padding:4px}.forest-shop-art img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 5px 4px #253e3820);transition:transform .25s ease,filter .25s ease}.forest-shop-card:hover .forest-shop-art img{transform:translateY(-3px) scale(1.045);filter:drop-shadow(0 8px 7px #253e3830)}.forest-shop-card{box-shadow:0 5px 16px #34465c0a;transition:transform .2s ease,box-shadow .2s ease}.forest-shop-card:active{transform:scale(.985)}@media(prefers-reduced-motion:reduce){.forest-shop-art img,.forest-shop-card{transition:none!important}}</style>
 
 <style id="navix-prototype-visual-refresh">
