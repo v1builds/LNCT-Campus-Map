@@ -1163,7 +1163,7 @@ document.querySelectorAll(".look-tab").forEach(t=>t.addEventListener("click",()=
 (function(){
  const meter=document.getElementById("mapStepMeter");
  const close=document.getElementById("meterClose");
- const stage=document.querySelector(".mapstage");
+ const stage=meter ? meter.closest(".mapstage") : null;
  if(!meter||!close||!stage||document.getElementById("meterReopen"))return;
  const reopen=document.createElement("button");
  reopen.type="button";reopen.id="meterReopen";reopen.className="meter-reopen";
