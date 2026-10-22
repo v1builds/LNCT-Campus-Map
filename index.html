@@ -1167,7 +1167,7 @@ document.querySelectorAll(".look-tab").forEach(t=>t.addEventListener("click",()=
  if(!meter||!close||!stage||document.getElementById("meterReopen"))return;
  const reopen=document.createElement("button");
  reopen.type="button";reopen.id="meterReopen";reopen.className="meter-reopen";
- reopen.setAttribute("aria-label","Show tree progress");reopen.title="Show tree progress";reopen.textContent="🌈";
+ reopen.setAttribute("aria-label","Reopen walking progress bar");reopen.title="Show walking progress";reopen.textContent="‹";
  stage.appendChild(reopen);
  close.addEventListener("click",function(){meter.classList.add("is-collapsed");reopen.classList.add("show")});
  reopen.addEventListener("click",function(){meter.classList.remove("is-collapsed");reopen.classList.remove("show")});
@@ -1347,3 +1347,25 @@ document.getElementById("createAvatar")?.addEventListener("click",()=>{if(docume
  document.getElementById("createAvatar")?.addEventListener("click",()=>setTimeout(restoreHomeMap,200));
 })();
 </script>
+
+
+<style id="navix-progress-reopen-handle">
+/* Small edge handle stays visible after the progress meter is dismissed. */
+.meter-reopen{
+  position:absolute!important;z-index:12!important;right:0!important;top:50%!important;
+  transform:translateY(-50%)!important;width:31px!important;height:66px!important;
+  padding:0!important;border:1px solid #ffffff!important;border-right:0!important;
+  border-radius:16px 0 0 16px!important;
+  background:linear-gradient(180deg,#fff5fb 0%,#eeeaff 48%,#e4fff0 100%)!important;
+  color:#6655ce!important;box-shadow:0 5px 18px #3d347b35!important;
+  font-family:system-ui,sans-serif!important;font-size:35px!important;font-weight:500!important;
+  line-height:1!important;cursor:pointer!important;pointer-events:auto!important;
+  display:none;place-items:center;touch-action:manipulation;
+}
+.meter-reopen.show{display:grid!important;animation:navixHandleIn .2s ease-out}
+.meter-reopen:active{transform:translateY(-50%) scale(.94)!important}
+.map-step-meter .meter-close{z-index:13!important;pointer-events:auto!important}
+@keyframes navixHandleIn{from{opacity:0;transform:translate(8px,-50%)}to{opacity:1;transform:translate(0,-50%)}}
+@media(max-width:600px){.meter-reopen{width:29px!important;height:60px!important;font-size:33px!important}}
+@media(prefers-reduced-motion:reduce){.meter-reopen{animation:none!important}}
+</style>
