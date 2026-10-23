@@ -1,0 +1,9 @@
+{
+  "appId": "com.navix.lnctcampus",
+  "appName": "NAVIX",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "android": {
+    "allowMixedContent": false
+  }
+}
