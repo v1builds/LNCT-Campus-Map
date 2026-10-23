@@ -1,0 +1,21 @@
+{
+  "name": "navix-campus",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NAVIX campus navigation web app packaged for Android with Capacitor",
+  "scripts": {
+    "build": "node scripts/prepare-web.mjs",
+    "android:add": "npm run build && cap add android",
+    "android:sync": "npm run build && cap sync android",
+    "android:open": "cap open android",
+    "android:run": "npm run build && cap run android",
+    "doctor": "cap doctor"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/core": "^7.4.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.4.3"
+  }
+}
