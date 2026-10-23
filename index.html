@@ -522,17 +522,17 @@ body[data-nav-tab="forest"] #gamePanel>.forest-overview{margin:0!important;paddi
 #lostPaymentModal{z-index:50}.lost-match-note{padding:9px 10px;border:1px solid #e2dcff;background:linear-gradient(110deg,#f3efff,#effaf4);border-radius:10px;color:#6254b7;font-size:11px;line-height:1.45}#navixClaimModal,#navixReviewClaims{z-index:60}#navixReviewClaims .modalbox{max-height:85vh;overflow:auto}
 @media(max-width:560px){.lost-actions{display:grid;grid-template-columns:1fr}.lost-actions button{min-height:42px}}
 \n/* Paid-first Lost & Found polish */\n.lost-plan-wrap{padding:12px;background:linear-gradient(135deg,#f1edff,#effaff);border:1px solid #ded8ff;border-radius:14px}.lost-plan-note{font-size:11px;line-height:1.5;color:#696487}.lost-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.lost-actions button{flex:1;min-width:135px;white-space:normal;line-height:1.35}.lost-actions button:disabled{opacity:.65}@media(max-width:560px){.lost-actions{display:grid;grid-template-columns:1fr}.lost-actions button{min-height:42px}}\n</style>
+
 <style id="navix-cinematic-splash-main">
 #njSplashMapSlot{height:100%;overflow:hidden!important;background:#142640!important;padding:0!important}
 #njSplashMapSlot .nj-cinematic-campus{position:relative;width:100%;height:100%;min-height:0;overflow:hidden;background:linear-gradient(145deg,#183b5a,#182540 65%,#26395e)}
-#njSplashMapSlot .nj-cinematic-campus img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 48%;filter:saturate(1.08) contrast(1.04);transform:scale(1.025)}
-#njSplashMapSlot .nj-campus-image-fallback{background:radial-gradient(ellipse at 50% 15%,#416a9c,#192a49 65%,#111d34)}
-#njSplashMapSlot .nj-cinematic-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#09162b05 15%,#09162b22 48%,#09162bed 100%),linear-gradient(90deg,#101c3548,transparent 80%)}
-#njSplashMapSlot .nj-cinematic-caption{position:absolute;left:clamp(16px,4vw,34px);right:16px;bottom:clamp(15px,3vh,27px);display:grid;gap:5px;color:#fff;text-align:left;text-shadow:0 2px 14px #071326a8}
+#njSplashMapSlot .nj-campus-scene{display:block;width:100%;height:100%;min-height:0;transform:scale(1.025);filter:saturate(1.12) contrast(1.03)}
+#njSplashMapSlot .nj-cinematic-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#09162b00 8%,#09162b08 35%,#09162bdc 100%),linear-gradient(90deg,#101c3520,transparent 80%)}
+#njSplashMapSlot .nj-cinematic-caption{position:absolute;left:clamp(16px,4vw,34px);right:16px;bottom:clamp(15px,3vh,27px);display:grid;gap:5px;color:#fff;text-align:left;text-shadow:0 2px 14px #071326c0}
 #njSplashMapSlot .nj-cinematic-kicker{font-size:clamp(8px,1.1vw,10px);font-weight:850;letter-spacing:.2em;color:#d5f2ff}
 #njSplashMapSlot .nj-cinematic-caption strong{font-size:clamp(22px,3.8vw,38px);line-height:1.05;letter-spacing:-.03em}
 #njSplashMapSlot .nj-cinematic-caption>span:last-child{font-size:clamp(10px,1.3vw,13px);color:#eef4ff}
-@media(max-width:650px){#njSplashMapSlot .nj-cinematic-campus img{object-position:center 48%}#njSplashMapSlot .nj-cinematic-caption{left:14px;bottom:13px;gap:4px}}
+@media(max-width:650px){#njSplashMapSlot .nj-cinematic-caption{left:14px;bottom:13px;gap:4px}}
 </style>
 </head>
 <body>
@@ -912,12 +912,17 @@ window.navixAvatarAPI={getLook:()=>avatarLook,setLook:(key,value)=>{avatarLook[k
 
 /* Prototype flow uses the existing NAVIX route controls and map. */
 const nj=document.getElementById("navixJourney"),njScreens=[...document.querySelectorAll("#navixJourney [data-screen]")],njSearch=document.getElementById("searchWorkspace"),njMapCard=document.querySelector(".layout > article.card"),njMap=document.getElementById("campusMap"),njMapStage=njMap?.closest(".mapstage"),njOriginalLayout=njMapCard?.parentElement,njSearchParent=njSearch?.parentElement;
-const njSearchMarker=document.createComment("NAVIX search workspace position"),njMapMarker=document.createComment("NAVIX map card position");if(njSearchParent)njSearchParent.insertBefore(njSearchMarker,njSearch);if(njOriginalLayout&&njMapCard)njOriginalLayout.insertBefore(njMapMarker,njMapCard);if(document.getElementById("njSplashMapSlot"))document.getElementById("njSplashMapSlot").innerHTML=`
-<div class="nj-cinematic-campus" role="img" aria-label="LNCT campus welcome scene">
-  <img src="https://lnct.ac.in/wp-content/uploads/2025/11/WhatsAppImage2025-11-18at3.23.07PM(1).jpeg" alt="LNCT campus" loading="eager" fetchpriority="high" onerror="this.style.display='none';this.parentElement.classList.add('nj-campus-image-fallback')">
-  <div class="nj-cinematic-shade"></div>
-  <div class="nj-cinematic-caption"><span class="nj-cinematic-kicker">BHOPAL · MADHYA PRADESH</span><strong>Life at LNCT</strong><span>One campus. A thousand stories.</span></div>
-</div>`;
+const njSearchMarker=document.createComment("NAVIX search workspace position"),njMapMarker=document.createComment("NAVIX map card position");if(njSearchParent)njSearchParent.insertBefore(njSearchMarker,njSearch);if(njOriginalLayout&&njMapCard)njOriginalLayout.insertBefore(njMapMarker,njMapCard);if(document.getElementById("njSplashMapSlot"))document.getElementById("njSplashMapSlot").innerHTML=`<div class="nj-cinematic-campus nj-campus-illustration"><svg class="nj-campus-scene" viewBox="0 0 820 390" role="img" aria-label="Illustrated campus scene" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="navixSky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#b7e9ff"/><stop offset="1" stop-color="#fff0f5"/></linearGradient><linearGradient id="navixWall" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff9ed"/><stop offset="1" stop-color="#e6bda0"/></linearGradient><linearGradient id="navixGlass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a6e7f5"/><stop offset="1" stop-color="#668ac7"/></linearGradient></defs>
+<rect width="820" height="390" fill="url(#navixSky)"/><circle cx="690" cy="58" r="28" fill="#ffe7a6"/>
+<g fill="#fff" opacity=".86"><ellipse cx="135" cy="63" rx="48" ry="15"/><ellipse cx="165" cy="57" rx="30" ry="18"/><ellipse cx="355" cy="80" rx="46" ry="13"/><ellipse cx="382" cy="72" rx="25" ry="18"/></g>
+<path d="M0 240 Q150 180 290 240 T570 230 T820 215 V390 H0Z" fill="#a4d7bb"/>
+<g stroke="#b58d79" stroke-width="3"><path d="M75 255V138L170 94 265 138V255Z" fill="url(#navixWall)"/><path d="M55 139L170 81 285 139Z" fill="#df9f85"/><path d="M320 250V116L420 72 520 116V250Z" fill="url(#navixWall)"/><path d="M300 117L420 60 540 117Z" fill="#d68e7a"/><path d="M555 258V150L650 109 745 150V258Z" fill="url(#navixWall)"/><path d="M535 151L650 94 765 151Z" fill="#d68e7a"/></g>
+<g fill="url(#navixGlass)" stroke="#fff" stroke-width="4"><rect x="96" y="151" width="28" height="35" rx="3"/><rect x="143" y="151" width="28" height="35" rx="3"/><rect x="190" y="151" width="28" height="35" rx="3"/><rect x="96" y="202" width="28" height="30" rx="3"/><rect x="143" y="202" width="28" height="30" rx="3"/><rect x="190" y="202" width="28" height="30" rx="3"/><rect x="348" y="132" width="30" height="37" rx="3"/><rect x="405" y="132" width="30" height="37" rx="3"/><rect x="462" y="132" width="30" height="37" rx="3"/><rect x="348" y="188" width="30" height="34" rx="3"/><rect x="405" y="188" width="30" height="34" rx="3"/><rect x="462" y="188" width="30" height="34" rx="3"/><rect x="580" y="165" width="27" height="32" rx="3"/><rect x="627" y="165" width="27" height="32" rx="3"/><rect x="674" y="165" width="27" height="32" rx="3"/><rect x="580" y="210" width="27" height="28" rx="3"/><rect x="627" y="210" width="27" height="28" rx="3"/><rect x="674" y="210" width="27" height="28" rx="3"/></g>
+<path d="M0 320Q205 278 410 320T820 310V390H0Z" fill="#f7dfc6"/><path d="M0 354Q220 316 410 354T820 345" fill="none" stroke="#fff8ec" stroke-width="9"/>
+<g fill="#438c72"><circle cx="48" cy="250" r="32"/><circle cx="278" cy="255" r="29"/><circle cx="540" cy="264" r="33"/><circle cx="780" cy="256" r="38"/></g><g fill="#7dbb8b"><circle cx="39" cy="242" r="22"/><circle cx="270" cy="247" r="21"/><circle cx="532" cy="255" r="23"/><circle cx="770" cy="245" r="26"/></g>
+<rect x="312" y="288" width="196" height="33" rx="16" fill="#fff" opacity=".9"/><text x="410" y="309" font-family="Arial,sans-serif" font-size="13" font-weight="800" text-anchor="middle" fill="#31516a" letter-spacing="2">LNCT CAMPUS</text>
+</svg><div class="nj-cinematic-shade"></div><div class="nj-cinematic-caption"><span class="nj-cinematic-kicker">BHOPAL · MADHYA PRADESH</span><strong>Life at LNCT</strong><span>One campus. A thousand stories.</span></div></div>;
 function njShow(n){njScreens.forEach(el=>el.classList.toggle("active",Number(el.dataset.screen)===n));document.getElementById("njStep").textContent=({1:"CAMPUS NAVIGATION",2:"WELCOME",4:"ROUTE PLANNER",5:"NAVIGATION",6:"ARRIVAL"})[n]||"NAVIX";nj.scrollTop=0;}
 function njRestoreSearch(){if(njSearchMarker.parentNode)njSearchMarker.parentNode.insertBefore(njSearch,njSearchMarker.nextSibling);njSearch.classList.remove("open");}
 function njRestoreMap(){if(njMapMarker.parentNode)njMapMarker.parentNode.insertBefore(njMapCard,njMapMarker.nextSibling);if(njMapStage&&njMap&&njMap.parentNode!==njMapStage)njMapStage.appendChild(njMap);}
