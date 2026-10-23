@@ -1447,5 +1447,37 @@ body.personal-mode .login-btn #headerAvatar{display:inline-flex;align-items:cent
 @media(max-width:600px){.navix-walking-buddy{filter:drop-shadow(0 4px 4px #493c8a40)}.navix-walking-buddy>svg{animation-duration:.3s}}
 @media(prefers-reduced-motion:reduce){.navix-walking-buddy>svg{animation:none!important}}
 </style>
+
+<style id="navix-always-visible-dressup-fix">
+#navixDressUpShortcut{position:fixed;top:76px;right:12px;z-index:120;display:flex;align-items:center;gap:7px;padding:10px 15px;border:1px solid #ded6ff;border-radius:999px;background:linear-gradient(135deg,#fff7fd,#eeeaff 55%,#e8faff);color:#5142a4;font:800 12px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;box-shadow:0 5px 16px #443b8229;cursor:pointer}
+#navixDressUpShortcut:active{transform:scale(.97)}
+@media(max-width:600px){#navixDressUpShortcut{top:74px;right:10px;padding:9px 12px;font-size:11px}}
+body.search-open #navixDressUpShortcut{display:none}
+</style>
+<button id="navixDressUpShortcut" type="button" aria-label="Open avatar outfit and style options">👗 Dress up your avatar</button>
+<script id="navix-dressup-shortcut-logic">
+(function(){
+ const shortcut=document.getElementById("navixDressUpShortcut");
+ if(!shortcut)return;
+ shortcut.addEventListener("click",function(){
+   const opener=document.getElementById("loginBtn");
+   if(opener)opener.click();
+   const modal=document.getElementById("avatarModal");
+   if(modal)modal.classList.add("show");
+   const name=document.getElementById("avatarName");
+   if(name)name.value=localStorage.getItem("navix-avatar-name")||"";
+   document.querySelectorAll(".look-tab").forEach(function(tab){
+     const active=tab.dataset.lookTab==="outfit";
+     tab.classList.toggle("active",active);
+   });
+   if(typeof renderLookOptions==="function")renderLookOptions();
+   const heading=document.getElementById("avatarHeading");
+   if(heading)heading.textContent=localStorage.getItem("navix-avatar-name")?"Dress up your campus buddy ✨":"Create your avatar and pick an outfit ✨";
+   const cta=document.getElementById("createAvatar");
+   if(cta)cta.textContent=localStorage.getItem("navix-avatar-name")?"💖 Save my look":"✨ Enter my little world";
+ });
+})();
+</script>
+
 </body>
 </html>
