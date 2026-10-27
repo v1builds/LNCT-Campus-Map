@@ -1505,5 +1505,70 @@ body.search-open #navixDressUpShortcut{display:none}
 })();
 </script>
 
+
+
+<script id="navix-unified-navigation-hotfix">
+(function () {
+  const nav = document.querySelector(".navix-bottom");
+  if (!nav || nav.dataset.unifiedFix === "1") return;
+  nav.dataset.unifiedFix = "1";
+  const layout = document.querySelector("main .layout");
+  const hero = document.querySelector("main > .hero");
+  const profile = document.querySelector("main > .profilebar");
+  const searchBar = document.getElementById("guestSearchBar");
+  const searchWorkspace = document.getElementById("searchWorkspace");
+  const mapCard = document.getElementById("campusMap")?.closest("article.card");
+  const routeCard = document.getElementById("findRoute")?.closest(".card");
+  const lostCard = document.getElementById("lostForm")?.closest(".card");
+  const events = document.getElementById("eventsPanel");
+  const memory = document.getElementById("memoryPanel");
+  const forest = document.getElementById("gamePanel");
+  const screens = [mapCard, routeCard, lostCard, events, memory, forest].filter(Boolean);
+  function show(el, yes) {
+    if (!el) return;
+    el.classList.toggle("tab-hidden", !yes);
+    el.style.setProperty("display", yes ? "" : "none", "important");
+  }
+  function go(key) {
+    if (!["home", "lost", "events", "memory", "forest"].includes(key)) key = "home";
+    document.body.dataset.navTab = key;
+    document.body.classList.remove("search-open");
+    nav.querySelectorAll("[data-nav]").forEach(b => {
+      const active = b.dataset.nav === key;
+      b.classList.toggle("active", active);
+      if (active) b.setAttribute("aria-current", "page");
+      else b.removeAttribute("aria-current");
+    });
+    show(hero, key === "home");
+    show(profile, key === "home" && document.body.classList.contains("personal-mode"));
+    show(searchBar, key === "home");
+    show(searchWorkspace, false);
+    screens.forEach(el => show(el, false));
+    if (layout) {
+      layout.style.setProperty("display", key === "events" ? "none" : "block", "important");
+      layout.classList.toggle("tab-layout-home", key === "home");
+    }
+    if (key === "home") show(mapCard, true);
+    else if (key === "lost") show(lostCard, true);
+    else if (key === "events") show(events, true);
+    else if (key === "memory") show(memory, true);
+    else if (key === "forest") show(forest, true);
+    if (key === "events" && events) events.scrollIntoView({behavior:"instant", block:"start"});
+    else if (key === "lost" && lostCard) lostCard.scrollIntoView({behavior:"instant", block:"start"});
+    else window.scrollTo({top:0, behavior:"instant"});
+  }
+  nav.addEventListener("click", function (event) {
+    const button = event.target.closest("[data-nav]");
+    if (!button) return;
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+    go(button.dataset.nav);
+  }, true);
+  window.navixGoToScreen = go;
+  go("home");
+})();
+</script>
+
 </body>
 </html>
